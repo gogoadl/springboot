@@ -1,0 +1,30 @@
+buildscript{
+    ext{ // build.gradle에서 사용하는 전역변수를 설정하겠다.
+        springBootVersion = '2.1.7.RELEASE' // 왼쪽 전역변수를 생성하고 그 값을  오른쪽 값으로 하겠다 라는 의미
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
