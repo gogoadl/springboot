@@ -1,6 +1,8 @@
 package com.littlesight.springboot;
 
+import com.littlesight.springboot.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*  RestController
@@ -17,5 +19,12 @@ public class HelloController {
     public String hello()
     {
         return "hello";
+    }
+
+    @GetMapping("/hello/dto")
+    public HelloResponseDto helloDto(@RequestParam("name") String name, @RequestParam("amount") int amount)
+    {   // RequestParam 외부에서 API로 넘긴 파라미터를 가져오는 어노테이션
+        // @RequestParam("가져올 데이터 이름") [데이터 타입] [가져온 데이터를 담을 변수]
+        return new HelloResponseDto(name,amount);
     }
 }
