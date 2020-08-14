@@ -6,10 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter // Getter 메소드 자동 생성
+@Getter
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity
+
 public class Posts {
+
+    @Builder
+    public Posts(String title, String content, String author)
+    {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +33,13 @@ public class Posts {
 
     private String author;
 
-    @Builder // 해당 클래스의 빌더 패턴 클래스를 생성, 생성자 상단에 선언 시 생성자에 포함된 필드만 빌더에 포함
-    public Posts(String title, String content, String author)
+    @Builder
+    public void update(String title, String content)
     {
         this.title = title;
         this.content = content;
-        this.author = author;
     }
+
+
 
 }
