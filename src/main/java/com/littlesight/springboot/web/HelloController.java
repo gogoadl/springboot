@@ -1,4 +1,4 @@
-package com.littlesight.springboot;
+package com.littlesight.springboot.web;
 
 import com.littlesight.springboot.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;

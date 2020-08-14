@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity
 
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Builder
     public Posts(String title, String content, String author)
