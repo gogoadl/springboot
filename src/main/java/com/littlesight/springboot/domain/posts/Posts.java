@@ -9,16 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity
-
 public class Posts extends BaseTimeEntity {
-
-    @Builder
-    public Posts(String title, String content, String author)
-    {
-        this.title = title;
-        this.content = content;
-        this.author = author;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +23,14 @@ public class Posts extends BaseTimeEntity {
     private String content;
 
     private String author;
+
+    @Builder
+    public Posts(String title, String content, String author)
+    {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 
     @Builder
     public void update(String title, String content)

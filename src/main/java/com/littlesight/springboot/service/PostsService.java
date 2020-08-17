@@ -2,12 +2,16 @@ package com.littlesight.springboot.service;
 
 import com.littlesight.springboot.domain.posts.Posts;
 import com.littlesight.springboot.domain.posts.PostsRepository;
+import com.littlesight.springboot.web.dto.PostsListResponseDto;
 import com.littlesight.springboot.web.dto.PostsResponseDto;
 import com.littlesight.springboot.web.dto.PostsSaveRequestDto;
 import com.littlesight.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor // final이 선언된 모든 필드를 인자값으로 하는 생성자를 만들어 줌
 @Service
@@ -37,5 +41,13 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc()
+    { // postRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto로 변환 -> List로 반환하는 메소드
+        return postsReporitory.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
