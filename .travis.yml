@@ -33,11 +33,11 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    cleanup : true
+
     bucket: springboot2-service-build
     key: springboot.zip
     bundle_type: zip
-    application: springboot2-webservi
+    application: springboot2-webservice
     deployment_group: springboot2-webservice-group
     region: ap-northeast-2
     wait-until-deployed: true
