@@ -33,6 +33,7 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
+    cleanup : true
     bucket: springboot2-service-build
     key: springboot.zip
     bundle_type: zip
