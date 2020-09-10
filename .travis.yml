@@ -25,7 +25,7 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY
     bucket: springboot2-service-build
     region: ap-northeast-2
-    cleanup: true
+    skip_cleanup: true
     acl: private
     local_dir: deploy
     wait-until-deployed: true
@@ -34,7 +34,6 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: springboot2-service-build
-    cleanup: true
     key: springboot.zip
     bundle_type: zip
     application: springboot2-webservice
