@@ -32,6 +32,7 @@ deploy:
     wait-until-deployed: true
 
   - provider: codedeploy
+
     access_key_id: $AWS_ACCESS_KEY
 
     secret_access_key: $AWS_SECRET_KEY
@@ -40,7 +41,7 @@ deploy:
     key: springboot.zip
 
     bundle_type: zip
-    application: springboot2-webservice2
+    application: springboot2-webservice
 
     deployment_group: springboot2-webservice-group
 
