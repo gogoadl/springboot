@@ -23,7 +23,7 @@ deploy:
   - provider: s3
     access_key_id: AKIATT55DVO6BFTVWADM
     secret_access_key: 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
-    bucket: springboot2-service-build
+    bucket: springboot2-webservice-build2
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
@@ -34,7 +34,7 @@ deploy:
     access_key_id: AKIATT55DVO6BFTVWADM
     secret_access_key: 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
 
-    bucket: springboot2-service-build
+    bucket: springboot2-webservice-build2
     key: springboot.zip
     bundle_type: zip
     application: springboot2-webservice
