@@ -43,8 +43,8 @@ deploy:
     wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
-notifications:  
+notifications:
  email:
   recipients:
-   - gogoadl@naver.com
+   - gogoadl@naver.com 
 
