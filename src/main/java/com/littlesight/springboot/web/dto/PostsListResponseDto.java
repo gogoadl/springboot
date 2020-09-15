@@ -10,6 +10,7 @@ public class PostsListResponseDto {
     private Long id;
     private String title;
     private String author;
+    private String category;
     private LocalDateTime modifiedDate;
 
     public PostsListResponseDto(Posts entitiy)
@@ -17,6 +18,7 @@ public class PostsListResponseDto {
         this.id = entitiy.getId();
         this.title = entitiy.getTitle();
         this.author = entitiy.getAuthor();
+        this.category = entitiy.getCategory();
         this.modifiedDate = entitiy.getModifiedTime();
     }
 }

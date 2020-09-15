@@ -17,9 +17,10 @@ var main = {
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
-            content: $('#content').val()
+            content: $('#content').val(),
+            category: $('#category').val()
         };
-
+        console.log(data);
         $.ajax({
             type: 'POST',
             url: '/api/v1/posts',

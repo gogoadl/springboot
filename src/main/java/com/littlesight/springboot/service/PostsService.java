@@ -59,4 +59,13 @@ public class PostsService {
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findByCategory(String category)
+    { // postRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto로 변환 -> List로 반환하는 메소드
+        return postsReporitory.findByCategory(category).stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }
