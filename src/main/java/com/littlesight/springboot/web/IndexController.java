@@ -20,12 +20,12 @@ public class IndexController {
     private final PostsService postsService;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) throws IOException // Model - 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
+    public String index(Model model, @LoginUser SessionUser user) // Model - 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
     {
         model.addAttribute("posts", postsService.findAllDesc());
 
-        ClassPathResource resource = new ClassPathResource("image.png");
-        model.addAttribute("image", resource.getURL());
+//        ClassPathResource resource = new ClassPathResource("image.png");
+//        model.addAttribute("image", resource.getURL());
 
         if(user != null)
             model.addAttribute("userName", user.getName());
