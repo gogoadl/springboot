@@ -2,7 +2,7 @@
 <h1>게시글 등록</h1>
 
 <div class="col-md-12">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form>
             <div class="form-group">
                 <label for="title">제목</label>
@@ -14,14 +14,15 @@
             </div>
             <div class="form-group">
                 <label for="content">내용</label>
-                <input type="text" class="form-control" id="content" placeholder="내용을 입력하세요">
+                <textarea class="form-control" rows="20" id="content" placeholder="내용을 입력하세요"></textarea>
+<!--                <input type="textarea" class="form-control input-lg" id="content" placeholder=".input-lg" aria-placeholder="qweqwe"  >-->
             </div>
             <div class="form-group">
                 <label for="category">카테고리</label>
                 <select id="category" class="form-control">
-                    <option value="mediaMarketing">미디어마케팅팀</option>
-                    <option value="planning">기획운영팀</option>
-                    <option value="videoContents">영상컨텐츠팀</option>
+                    <option value="미디어마케팅팀">미디어마케팅팀</option>
+                    <option value="기획운영팀">기획운영팀</option>
+                    <option value="영상컨텐츠팀">영상컨텐츠팀</option>
                 </select>
             </div>
         </form>

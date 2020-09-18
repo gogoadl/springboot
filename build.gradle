@@ -37,3 +37,4 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
     compile('org.mariadb.jdbc:mariadb-java-client')
 }
+

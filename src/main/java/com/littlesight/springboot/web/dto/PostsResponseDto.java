@@ -10,6 +10,7 @@ public class PostsResponseDto {
     private String title;
     private String content;
     private String author;
+    private String lastModifiedDate;
     private String category;
 
     public PostsResponseDto(Posts entity)
@@ -18,6 +19,7 @@ public class PostsResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuthor();
+        this.lastModifiedDate = entity.getModifiedTime().toString();
         this.category = entity.getCategory();
     }
 
