@@ -26,8 +26,8 @@ public class IndexController {
     {
         model.addAttribute("posts", postsService.findAllDesc());
 
-        File imageFile = new ClassPathResource("image.png").getFile();
-        model.addAttribute("logo", imageFile);
+//        File imageFile = new ClassPathResource("image.png").getFile();
+//        model.addAttribute("logo", imageFile);
 //        ClassPathResource resource = new ClassPathResource("image.png");
 //        model.addAttribute("image", resource.getURL());
 
