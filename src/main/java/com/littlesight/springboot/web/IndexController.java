@@ -52,7 +52,7 @@ public class IndexController {
     @GetMapping("/posts/planning")
     public String postsPlanning(Model model, @LoginUser SessionUser user)
     {
-        model.addAttribute("posts", postsService.findByCategory("planning"));
+        model.addAttribute("posts", postsService.findByCategory("기획운영팀"));
         System.out.println(model.toString());
 
         if(user != null)
@@ -64,7 +64,7 @@ public class IndexController {
     @GetMapping("/posts/mediamarketing")
     public String postsMediaMarketing(Model model, @LoginUser SessionUser user)
     {
-        model.addAttribute("posts", postsService.findByCategory("mediaMarketing"));
+        model.addAttribute("posts", postsService.findByCategory("미디어마케팅팀"));
         System.out.println(model.toString());
 
         if(user != null)
@@ -76,7 +76,7 @@ public class IndexController {
     @GetMapping("/posts/videocontents")
     public String postsVideoContents(Model model, @LoginUser SessionUser user)
     {
-        model.addAttribute("posts", postsService.findByCategory("videoContents"));
+        model.addAttribute("posts", postsService.findByCategory("영상컨텐츠팀"));
         System.out.println(model.toString());
 
         if(user != null)

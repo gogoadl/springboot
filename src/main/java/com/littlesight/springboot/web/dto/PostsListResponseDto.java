@@ -4,6 +4,7 @@ import com.littlesight.springboot.domain.posts.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 public class PostsListResponseDto {
@@ -11,14 +12,14 @@ public class PostsListResponseDto {
     private String title;
     private String author;
     private String category;
-    private LocalDateTime modifiedDate;
+    private String modifiedDate;
 
-    public PostsListResponseDto(Posts entitiy)
+    public PostsListResponseDto(Posts entity)
     {
-        this.id = entitiy.getId();
-        this.title = entitiy.getTitle();
-        this.author = entitiy.getAuthor();
-        this.category = entitiy.getCategory();
-        this.modifiedDate = entitiy.getModifiedTime();
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.author = entity.getAuthor();
+        this.category = entity.getCategory();
+        this.modifiedDate = entity.getModifiedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

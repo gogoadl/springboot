@@ -3,6 +3,8 @@ package com.littlesight.springboot.web.dto;
 import com.littlesight.springboot.domain.posts.Posts;
 import lombok.Getter;
 
+import java.time.format.DateTimeFormatter;
+
 @Getter
 public class PostsResponseDto {
 
@@ -19,7 +21,7 @@ public class PostsResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuthor();
-        this.lastModifiedDate = entity.getModifiedTime().toString();
+        this.lastModifiedDate = entity.getModifiedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.category = entity.getCategory();
     }
 
