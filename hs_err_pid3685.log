@@ -1,0 +1,1045 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65536 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2763), pid=3685, tid=0x00007fdb98bfb700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_252-b09) (build 1.8.0_252-b09)
+# Java VM: OpenJDK 64-Bit Server VM (25.252-b09 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fdba8114800):  JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=3701, stack(0x00007fdb98afc000,0x00007fdb98bfc000)]
+
+Stack: [0x00007fdb98afc000,0x00007fdb98bfc000],  sp=0x00007fdb98bfa000,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xadf8ed]  VMError::report_and_die()+0x15d
+V  [libjvm.so+0x4f4c7a]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0xaa
+V  [libjvm.so+0x8c32f8]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xd8
+V  [libjvm.so+0x8ba5fe]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2e
+V  [libjvm.so+0xadc574]  VirtualSpace::expand_by(unsigned long, bool)+0x1b4
+V  [libjvm.so+0x601d7c]  CodeHeap::expand_by(unsigned long)+0x6c
+V  [libjvm.so+0x47c4f6]  CodeCache::allocate(int, bool)+0x46
+V  [libjvm.so+0x88c397]  nmethod::new_nmethod(methodHandle, int, int, CodeOffsets*, int, DebugInformationRecorder*, Dependencies*, CodeBuffer*, int, OopMapSet*, ExceptionHandlerTable*, ImplicitExceptionTable*, AbstractCompiler*, int)+0x1a7
+V  [libjvm.so+0x41b18e]  ciEnv::register_method(ciMethod*, int, CodeOffsets*, int, CodeBuffer*, int, OopMapSet*, ExceptionHandlerTable*, ImplicitExceptionTable*, AbstractCompiler*, int, bool, bool, RTMState)+0x38e
+V  [libjvm.so+0x35d71b]  Compilation::compile_method()+0x21b
+V  [libjvm.so+0x35da72]  Compilation::Compilation(AbstractCompiler*, ciEnv*, ciMethod*, int, BufferBlob*)+0x252
+V  [libjvm.so+0x35e7e7]  Compiler::compile_method(ciEnv*, ciMethod*, int)+0xb7
+V  [libjvm.so+0x4a9426]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0x996
+V  [libjvm.so+0x4aa35a]  CompileBroker::compiler_thread_loop()+0x56a
+V  [libjvm.so+0xa893f2]  JavaThread::thread_main_inner()+0x212
+V  [libjvm.so+0x8c0402]  java_start(Thread*)+0xf2
+C  [libpthread.so.0+0x7e75]  start_thread+0xc5
+
+
+Current CompileTask:
+C1:  32036 1004       3       org.gradle.internal.logging.console.WorkInProgressRenderer::renderNow (352 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fdba8788000 JavaThread "Forward input" [_thread_blocked, id=3713, stack(0x00007fdb84a78000,0x00007fdb84b79000)]
+  0x00007fdba8785800 JavaThread "DisconnectableInputStream source reader" daemon [_thread_in_native, id=3712, stack(0x00007fdb84b79000,0x00007fdb84c7a000)]
+  0x00007fdba86b1000 JavaThread "pool-1-thread-1" [_thread_blocked, id=3704, stack(0x00007fdb980d6000,0x00007fdb981d7000)]
+  0x00007fdba8117800 JavaThread "Service Thread" daemon [_thread_blocked, id=3702, stack(0x00007fdb989fa000,0x00007fdb98afb000)]
+=>0x00007fdba8114800 JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=3701, stack(0x00007fdb98afc000,0x00007fdb98bfc000)]
+  0x00007fdba8106000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=3700, stack(0x00007fdb98bfd000,0x00007fdb98cfd000)]
+  0x00007fdba8104000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3699, stack(0x00007fdb98cfd000,0x00007fdb98dfe000)]
+  0x00007fdba80da000 JavaThread "Finalizer" daemon [_thread_blocked, id=3698, stack(0x00007fdb98dfe000,0x00007fdb98eff000)]
+  0x00007fdba80d5000 JavaThread "Reference Handler" daemon [_thread_blocked, id=3697, stack(0x00007fdb98eff000,0x00007fdb99000000)]
+  0x00007fdba804b800 JavaThread "main" [_thread_blocked, id=3695, stack(0x00007fdbb00da000,0x00007fdbb01da000)]
+
+Other Threads:
+  0x00007fdba80cb800 VMThread [stack: 0x00007fdbac101000,0x00007fdbac201000] [id=3696]
+  0x00007fdba811a800 WatcherThread [stack: 0x00007fdb988fa000,0x00007fdb989fa000] [id=3703]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fdba8047e40] CodeCache_lock - owner thread: 0x00007fdba8114800
+[0x00007fdba80494c0] Compile_lock - owner thread: 0x00007fdba8114800
+[0x00007fdba80495c0] MethodCompileQueue_lock - owner thread: 0x00007fdba8114800
+
+heap address: 0x00000000fc000000, size: 64 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ def new generation   total 19648K, used 6105K [0x00000000fc000000, 0x00000000fd550000, 0x00000000fd550000)
+  eden space 17472K,  22% used [0x00000000fc000000, 0x00000000fc3d6448, 0x00000000fd110000)
+  from space 2176K, 100% used [0x00000000fd110000, 0x00000000fd330000, 0x00000000fd330000)
+  to   space 2176K,   0% used [0x00000000fd330000, 0x00000000fd330000, 0x00000000fd550000)
+ tenured generation   total 43712K, used 2086K [0x00000000fd550000, 0x0000000100000000, 0x0000000100000000)
+   the space 43712K,   4% used [0x00000000fd550000, 0x00000000fd759938, 0x00000000fd759a00, 0x0000000100000000)
+ Metaspace       used 10739K, capacity 10980K, committed 11264K, reserved 1058816K
+  class space    used 1328K, capacity 1422K, committed 1536K, reserved 1048576K
+
+Card table byte_map: [0x00007fdbb006f000,0x00007fdbb0090000] byte_map_base: 0x00007fdbaf88f000
+
+Polling page: 0x00007fdbb01e4000
+
+CodeCache: size=245760Kb used=3362Kb max_used=3377Kb free=242397Kb
+ bounds [0x00007fdb99000000, 0x00007fdb99350000, 0x00007fdba8000000]
+ total_blobs=1345 nmethods=1003 adapters=255
+ compilation: enabled
+
+Compilation events (250 events):
+Event: 9.213 Thread 0x00007fdba8114800 nmethod 877 0x00007fdb99305e50 code [0x00007fdb99305fc0, 0x00007fdb993061e8]
+Event: 9.312 Thread 0x00007fdba8114800  879       1       java.util.Arrays$ArrayList::size (6 bytes)
+Event: 9.313 Thread 0x00007fdba8114800 nmethod 879 0x00007fdb99306290 code [0x00007fdb993063e0, 0x00007fdb993064f0]
+Event: 9.413 Thread 0x00007fdba8114800  880       3       java.util.concurrent.ScheduledThreadPoolExecutor::canRunInCurrentRunState (20 bytes)
+Event: 9.413 Thread 0x00007fdba8114800 nmethod 880 0x00007fdb99306590 code [0x00007fdb99306700, 0x00007fdb99306b50]
+Event: 9.413 Thread 0x00007fdba8114800  881       3       java.util.concurrent.ThreadPoolExecutor::isRunningOrShutdown (31 bytes)
+Event: 9.413 Thread 0x00007fdba8114800 nmethod 881 0x00007fdb99306c90 code [0x00007fdb99306e00, 0x00007fdb99307130]
+Event: 9.713 Thread 0x00007fdba8114800  882       3       org.gradle.internal.logging.console.ProgressBar::trimToConsole (45 bytes)
+Event: 9.713 Thread 0x00007fdba8114800 nmethod 882 0x00007fdb99307210 code [0x00007fdb993073a0, 0x00007fdb99307788]
+Event: 9.812 Thread 0x00007fdba8114800  883       3       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator$OperationState::maybeFlushOutput (1 bytes)
+Event: 9.813 Thread 0x00007fdba8114800 nmethod 883 0x00007fdb993078d0 code [0x00007fdb99307a20, 0x00007fdb99307b70]
+Event: 9.813 Thread 0x00007fdba8114800  884       3       java.util.ArrayList$ListItr::<init> (16 bytes)
+Event: 9.813 Thread 0x00007fdba8114800 nmethod 884 0x00007fdb99307c10 code [0x00007fdb99307d80, 0x00007fdb99307fd0]
+Event: 9.813 Thread 0x00007fdba8114800  885       1       java.util.Collections$EmptyList::isEmpty (2 bytes)
+Event: 9.813 Thread 0x00007fdba8114800 nmethod 885 0x00007fdb99308110 code [0x00007fdb99308260, 0x00007fdb99308370]
+Event: 9.913 Thread 0x00007fdba8114800  886       3       java.util.concurrent.locks.AbstractQueuedSynchronizer::release (33 bytes)
+Event: 9.913 Thread 0x00007fdba8114800 nmethod 886 0x00007fdb993083d0 code [0x00007fdb99308560, 0x00007fdb99308878]
+Event: 10.013 Thread 0x00007fdba8114800  887       3       org.fusesource.jansi.Ansi::_appendEscapeSequence (83 bytes)
+Event: 10.014 Thread 0x00007fdba8114800 nmethod 887 0x00007fdb99308950 code [0x00007fdb99308c80, 0x00007fdb9930a6d8]
+Event: 10.113 Thread 0x00007fdba8114800  888       3       java.util.LinkedHashMap$LinkedHashIterator::<init> (31 bytes)
+Event: 10.113 Thread 0x00007fdba8114800 nmethod 888 0x00007fdb9930ba10 code [0x00007fdb9930bb80, 0x00007fdb9930bd70]
+Event: 10.212 Thread 0x00007fdba8114800  889       3       org.gradle.internal.logging.events.StyledTextOutputEvent$Span::<init> (15 bytes)
+Event: 10.213 Thread 0x00007fdba8114800 nmethod 889 0x00007fdb9930be50 code [0x00007fdb9930bfc0, 0x00007fdb9930c190]
+Event: 10.213 Thread 0x00007fdba8114800  890       3       org.gradle.internal.logging.console.DefaultAnsiExecutor$AnsiContextImpl::withStyle (16 bytes)
+Event: 10.213 Thread 0x00007fdba8114800 nmethod 890 0x00007fdb9930c250 code [0x00007fdb9930c440, 0x00007fdb9930cbe8]
+Event: 10.213 Thread 0x00007fdba8114800  891       3       org.gradle.internal.logging.console.DefaultColorMap::getColourFor (12 bytes)
+Event: 10.213 Thread 0x00007fdba8114800 nmethod 891 0x00007fdb9930cf90 code [0x00007fdb9930d120, 0x00007fdb9930d558]
+Event: 10.213 Thread 0x00007fdba8114800  892       3       org.gradle.internal.logging.console.DefaultColorMap::getColor (38 bytes)
+Event: 10.214 Thread 0x00007fdba8114800 nmethod 892 0x00007fdb9930d6d0 code [0x00007fdb9930d8a0, 0x00007fdb9930dee8]
+Event: 10.214 Thread 0x00007fdba8114800  893       3       org.gradle.internal.logging.console.DefaultAnsiExecutor$AnsiContextImpl::withColor (29 bytes)
+Event: 10.214 Thread 0x00007fdba8114800 nmethod 893 0x00007fdb9930e110 code [0x00007fdb9930e2a0, 0x00007fdb9930e668]
+Event: 10.313 Thread 0x00007fdba8114800  894       3       org.gradle.internal.logging.console.DefaultRedrawableLabel::writeText (9 bytes)
+Event: 10.313 Thread 0x00007fdba8114800 nmethod 894 0x00007fdb9930e790 code [0x00007fdb9930e900, 0x00007fdb9930eb50]
+Event: 10.313 Thread 0x00007fdba8114800  895       3       org.gradle.internal.logging.console.DefaultRedrawableLabel$1::<init> (10 bytes)
+Event: 10.313 Thread 0x00007fdba8114800 nmethod 895 0x00007fdb9930ec50 code [0x00007fdb9930edc0, 0x00007fdb9930ef90]
+Event: 10.313 Thread 0x00007fdba8114800  896       3       org.gradle.internal.logging.console.DefaultRedrawableLabel$1::execute (9 bytes)
+Event: 10.313 Thread 0x00007fdba8114800 nmethod 896 0x00007fdb9930f050 code [0x00007fdb9930f1e0, 0x00007fdb9930f5a8]
+Event: 10.313 Thread 0x00007fdba8114800  897       3       org.gradle.internal.logging.console.DefaultRedrawableLabel$1::execute (12 bytes)
+Event: 10.313 Thread 0x00007fdba8114800 nmethod 897 0x00007fdb9930f710 code [0x00007fdb9930f880, 0x00007fdb9930fa68]
+Event: 10.412 Thread 0x00007fdba8114800  898       3       java.lang.StringBuilder::append (6 bytes)
+Event: 10.413 Thread 0x00007fdba8114800 nmethod 898 0x00007fdb9930fb50 code [0x00007fdb9930fcc0, 0x00007fdb9930ff28]
+Event: 10.612 Thread 0x00007fdba8114800  899       3       java.lang.AbstractStringBuilder::insert (85 bytes)
+Event: 10.613 Thread 0x00007fdba8114800 nmethod 899 0x00007fdb99310010 code [0x00007fdb99310220, 0x00007fdb99310cb8]
+Event: 10.912 Thread 0x00007fdba8114800  900       3       java.util.HashMap$ValueIterator::next (8 bytes)
+Event: 10.913 Thread 0x00007fdba8114800 nmethod 900 0x00007fdb99311110 code [0x00007fdb99311280, 0x00007fdb99311488]
+Event: 11.112 Thread 0x00007fdba8114800  901       1       org.gradle.internal.logging.console.WorkInProgressRenderer::access$000 (5 bytes)
+Event: 11.113 Thread 0x00007fdba8114800 nmethod 901 0x00007fdb99311550 code [0x00007fdb993116a0, 0x00007fdb99311790]
+Event: 11.213 Thread 0x00007fdba8114800  902       3       java.util.AbstractList::listIterator (15 bytes)
+Event: 11.213 Thread 0x00007fdba8114800 nmethod 902 0x00007fdb99311810 code [0x00007fdb993119e0, 0x00007fdb99311f58]
+Event: 11.213 Thread 0x00007fdba8114800  903       3       java.util.AbstractList::rangeCheckForAdd (26 bytes)
+Event: 11.214 Thread 0x00007fdba8114800 nmethod 903 0x00007fdb993121d0 code [0x00007fdb99312400, 0x00007fdb993130b8]
+Event: 11.313 Thread 0x00007fdba8114800  904       3       java.nio.Buffer::flip (20 bytes)
+Event: 11.313 Thread 0x00007fdba8114800 nmethod 904 0x00007fdb99313690 code [0x00007fdb993137e0, 0x00007fdb99313950]
+Event: 11.513 Thread 0x00007fdba8114800  905       3       java.io.FilterOutputStream::write (51 bytes)
+Event: 11.513 Thread 0x00007fdba8114800 nmethod 905 0x00007fdb993139d0 code [0x00007fdb99313b60, 0x00007fdb99313f78]
+Event: 11.712 Thread 0x00007fdba8114800  906       1       java.lang.Boolean::booleanValue (5 bytes)
+Event: 11.713 Thread 0x00007fdba8114800 nmethod 906 0x00007fdb99314110 code [0x00007fdb99314260, 0x00007fdb99314370]
+Event: 11.912 Thread 0x00007fdba8114800  907       3       java.lang.String::<init> (15 bytes)
+Event: 11.913 Thread 0x00007fdba8114800 nmethod 907 0x00007fdb993143d0 code [0x00007fdb99314560, 0x00007fdb99314948]
+Event: 12.012 Thread 0x00007fdba8114800  909       3       org.gradle.internal.logging.console.DefaultAnsiExecutor$AnsiContextImpl::writeAt (33 bytes)
+Event: 12.013 Thread 0x00007fdba8114800 nmethod 909 0x00007fdb99314b10 code [0x00007fdb99314ca0, 0x00007fdb99315028]
+Event: 12.013 Thread 0x00007fdba8114800  908       1       org.gradle.internal.logging.console.AnsiConsole::access$000 (5 bytes)
+Event: 12.013 Thread 0x00007fdba8114800 nmethod 908 0x00007fdb993151d0 code [0x00007fdb99315320, 0x00007fdb99315410]
+Event: 12.113 Thread 0x00007fdba8114800  910       3       org.gradle.internal.logging.console.DefaultRedrawableLabel::setText (6 bytes)
+Event: 12.113 Thread 0x00007fdba8114800 nmethod 910 0x00007fdb99315490 code [0x00007fdb993155e0, 0x00007fdb99315750]
+Event: 12.113 Thread 0x00007fdba8114800  911       3       org.fusesource.jansi.Ansi::cursorLeft (8 bytes)
+Event: 12.113 Thread 0x00007fdba8114800 nmethod 911 0x00007fdb993157d0 code [0x00007fdb99315940, 0x00007fdb99315ac8]
+Event: 12.212 Thread 0x00007fdba8114800  912       3       java.util.AbstractList::equals (117 bytes)
+Event: 12.213 Thread 0x00007fdba8114800 nmethod 912 0x00007fdb99315b50 code [0x00007fdb99315d80, 0x00007fdb99316a88]
+Event: 12.313 Thread 0x00007fdba8114800  913       3       java.util.AbstractList$Itr::<init> (31 bytes)
+Event: 12.313 Thread 0x00007fdba8114800 nmethod 913 0x00007fdb99318610 code [0x00007fdb99318780, 0x00007fdb99318970]
+Event: 12.412 Thread 0x00007fdba8114800  914       3       org.gradle.internal.logging.console.DefaultRedrawableLabel::redraw (166 bytes)
+Event: 12.413 Thread 0x00007fdba8114800 nmethod 914 0x00007fdb99318a50 code [0x00007fdb99318c80, 0x00007fdb99319818]
+Event: 12.713 Thread 0x00007fdba8114800  915       3       java.nio.Buffer::clear (20 bytes)
+Event: 12.713 Thread 0x00007fdba8114800 nmethod 915 0x00007fdb99319e10 code [0x00007fdb99319f60, 0x00007fdb9931a0d0]
+Event: 12.813 Thread 0x00007fdba8114800  916       3       java.util.concurrent.locks.ReentrantLock::unlock (10 bytes)
+Event: 12.813 Thread 0x00007fdba8114800 nmethod 916 0x00007fdb9931a150 code [0x00007fdb9931a2e0, 0x00007fdb9931a6d8]
+Event: 12.914 Thread 0x00007fdba8114800  917       3       org.gradle.internal.logging.console.DefaultAnsiExecutor$AnsiContextImpl::a (234 bytes)
+Event: 12.915 Thread 0x00007fdba8114800 nmethod 917 0x00007fdb9931a810 code [0x00007fdb9931aac0, 0x00007fdb9931bc48]
+Event: 13.212 Thread 0x00007fdba8114800  918       1       java.util.Arrays$ArrayList::get (7 bytes)
+Event: 13.213 Thread 0x00007fdba8114800 nmethod 918 0x00007fdb9931c990 code [0x00007fdb9931cae0, 0x00007fdb9931cc10]
+Event: 13.312 Thread 0x00007fdba8114800  919       3       sun.nio.cs.StreamEncoder::ensureOpen (18 bytes)
+Event: 13.313 Thread 0x00007fdba8114800 nmethod 919 0x00007fdb9931ccd0 code [0x00007fdb9931ce40, 0x00007fdb9931d088]
+Event: 13.413 Thread 0x00007fdba8114800  920       3       java.util.concurrent.ThreadPoolExecutor::workerCountOf (5 bytes)
+Event: 13.413 Thread 0x00007fdba8114800 nmethod 920 0x00007fdb9931d150 code [0x00007fdb9931d2a0, 0x00007fdb9931d3d0]
+Event: 13.513 Thread 0x00007fdba8114800  922       3       java.util.concurrent.ScheduledThreadPoolExecutor::now (4 bytes)
+Event: 13.513 Thread 0x00007fdba8114800 nmethod 922 0x00007fdb9931d450 code [0x00007fdb9931d5c0, 0x00007fdb9931d730]
+Event: 13.513 Thread 0x00007fdba8114800  921       1       java.util.concurrent.ThreadPoolExecutor::getQueue (5 bytes)
+Event: 13.513 Thread 0x00007fdba8114800 nmethod 921 0x00007fdb9931d790 code [0x00007fdb9931d8e0, 0x00007fdb9931d9f0]
+Event: 13.613 Thread 0x00007fdba8114800  923       3       java.util.concurrent.locks.ReentrantLock$NonfairSync::tryAcquire (6 bytes)
+Event: 13.613 Thread 0x00007fdba8114800 nmethod 923 0x00007fdb9931da50 code [0x00007fdb9931dbc0, 0x00007fdb9931ddc8]
+Event: 13.613 Thread 0x00007fdba8114800  924       3       java.util.concurrent.locks.ReentrantLock$Sync::nonfairTryAcquire (67 bytes)
+Event: 13.613 Thread 0x00007fdba8114800 nmethod 924 0x00007fdb9931de50 code [0x00007fdb9931e000, 0x00007fdb9931e728]
+Event: 13.613 Thread 0x00007fdba8114800  925       1       org.gradle.internal.logging.console.ThrottlingOutputEventListener::access$000 (5 bytes)
+Event: 13.613 Thread 0x00007fdba8114800 nmethod 925 0x00007fdb9931e8d0 code [0x00007fdb9931ea20, 0x00007fdb9931eb10]
+Event: 13.613 Thread 0x00007fdba8114800  926       1       org.gradle.internal.logging.events.UpdateNowEvent::getLogLevel (2 bytes)
+Event: 13.613 Thread 0x00007fdba8114800 nmethod 926 0x00007fdb9931eb90 code [0x00007fdb9931ece0, 0x00007fdb9931edf0]
+Event: 13.613 Thread 0x00007fdba8114800  927       1       org.gradle.internal.logging.console.MultiLineBuildProgressArea::getWritePosition (5 bytes)
+Event: 13.613 Thread 0x00007fdba8114800 nmethod 927 0x00007fdb9931ee50 code [0x00007fdb9931efa0, 0x00007fdb9931f0b0]
+Event: 13.912 Thread 0x00007fdba8114800  928       3       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator$OperationGroup::timeoutExpired (17 bytes)
+Event: 13.913 Thread 0x00007fdba8114800 nmethod 928 0x00007fdb9931f110 code [0x00007fdb9931f280, 0x00007fdb9931f430]
+Event: 13.913 Thread 0x00007fdba8114800  929       3       com.google.common.collect.Lists$ReverseList$1::next (30 bytes)
+Event: 13.913 Thread 0x00007fdba8114800 nmethod 929 0x00007fdb9931f4d0 code [0x00007fdb9931f680, 0x00007fdb9931fac8]
+Event: 14.112 Thread 0x00007fdba8114800  930       3       java.util.ArrayList::listIterator (10 bytes)
+Event: 14.113 Thread 0x00007fdba8114800 nmethod 930 0x00007fdb9931fc90 code [0x00007fdb9931fe00, 0x00007fdb993200f0]
+Event: 15.212 Thread 0x00007fdba8114800  932       3       org.gradle.internal.logging.console.DefaultAnsiExecutor::positionCursorAt (181 bytes)
+Event: 15.213 Thread 0x00007fdba8114800 nmethod 932 0x00007fdb99320250 code [0x00007fdb99320440, 0x00007fdb99320cd8]
+Event: 15.213 Thread 0x00007fdba8114800  931       3       org.gradle.internal.logging.console.DefaultAnsiExecutor::access$600 (7 bytes)
+Event: 15.213 Thread 0x00007fdba8114800 nmethod 931 0x00007fdb99320f90 code [0x00007fdb99321100, 0x00007fdb99321268]
+Event: 15.512 Thread 0x00007fdba8114800  933       3       java.nio.ByteBuffer::array (35 bytes)
+Event: 15.513 Thread 0x00007fdba8114800 nmethod 933 0x00007fdb99321350 code [0x00007fdb993214e0, 0x00007fdb993217f8]
+Event: 15.712 Thread 0x00007fdba8114800  934       1       org.gradle.internal.logging.events.UpdateNowEvent::getTimestamp (5 bytes)
+Event: 15.713 Thread 0x00007fdba8114800 nmethod 934 0x00007fdb99321950 code [0x00007fdb99321aa0, 0x00007fdb99321bb0]
+Event: 16.012 Thread 0x00007fdba8114800  935       3       java.nio.Buffer::limit (62 bytes)
+Event: 16.013 Thread 0x00007fdba8114800 nmethod 935 0x00007fdb99321c10 code [0x00007fdb99321d80, 0x00007fdb99322088]
+Event: 16.112 Thread 0x00007fdba8114800  936       3       org.gradle.internal.logging.console.DefaultWorkInProgressFormatter::format (109 bytes)
+Event: 16.114 Thread 0x00007fdba8114800 nmethod 936 0x00007fdb99322150 code [0x00007fdb993223e0, 0x00007fdb993235d8]
+Event: 16.312 Thread 0x00007fdba8114800  937       3       org.fusesource.jansi.Ansi::cursorDown (8 bytes)
+Event: 16.313 Thread 0x00007fdba8114800 nmethod 937 0x00007fdb99323e10 code [0x00007fdb99323f80, 0x00007fdb99324108]
+Event: 16.313 Thread 0x00007fdba8114800  938       3       java.io.FileOutputStream::write (12 bytes)
+Event: 16.313 Thread 0x00007fdba8114800 nmethod 938 0x00007fdb99324190 code [0x00007fdb99324300, 0x00007fdb99324488]
+Event: 16.712 Thread 0x00007fdba8114800  939       3       org.gradle.internal.logging.console.DefaultRedrawableLabel::redrawText (93 bytes)
+Event: 16.713 Thread 0x00007fdba8114800 nmethod 939 0x00007fdb99324550 code [0x00007fdb993247e0, 0x00007fdb99325a08]
+Event: 16.813 Thread 0x00007fdba8114800  940       3       java.io.BufferedOutputStream::flushBuffer (29 bytes)
+Event: 16.813 Thread 0x00007fdba8114800 nmethod 940 0x00007fdb99326550 code [0x00007fdb993266c0, 0x00007fdb99326928]
+Event: 17.512 Thread 0x00007fdba8114800  941       3       java.util.HashMap::values (25 bytes)
+Event: 17.513 Thread 0x00007fdba8114800 nmethod 941 0x00007fdb993269d0 code [0x00007fdb99326b40, 0x00007fdb99326e70]
+Event: 17.513 Thread 0x00007fdba8114800  942       3       java.util.HashMap$Values::iterator (12 bytes)
+Event: 17.513 Thread 0x00007fdba8114800 nmethod 942 0x00007fdb99326fd0 code [0x00007fdb99327140, 0x00007fdb993273a8]
+Event: 18.012 Thread 0x00007fdba8106000  943       4       java.util.ArrayList$Itr::hasNext (20 bytes)
+Event: 18.013 Thread 0x00007fdba8106000 nmethod 943 0x00007fdb9932a110 code [0x00007fdb9932a260, 0x00007fdb9932a2f8]
+Event: 18.412 Thread 0x00007fdba8114800  944       3       com.google.common.collect.AbstractIterator::tryToComputeNext (36 bytes)
+Event: 18.413 Thread 0x00007fdba8114800 nmethod 944 0x00007fdb99329c10 code [0x00007fdb99329d80, 0x00007fdb9932a068]
+Event: 18.912 Thread 0x00007fdba8106000  945       4       java.util.ArrayList::add (29 bytes)
+Event: 18.917 Thread 0x00007fdba8106000 nmethod 945 0x00007fdb99327f90 code [0x00007fdb99328100, 0x00007fdb99328448]
+Event: 19.412 Thread 0x00007fdba8114800  946       1       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator::access$300 (5 bytes)
+Event: 19.413 Thread 0x00007fdba8114800 nmethod 946 0x00007fdb99327cd0 code [0x00007fdb99327e20, 0x00007fdb99327f10]
+Event: 19.812 Thread 0x00007fdba8106000  947       4       java.util.ArrayList::get (11 bytes)
+Event: 19.813 Thread 0x00007fdba8106000 nmethod 947 0x00007fdb99327990 code [0x00007fdb99327ae0, 0x00007fdb99327bb8]
+Event: 19.912 Thread 0x00007fdba8114800  948       3       java.util.concurrent.TimeUnit$1::toNanos (2 bytes)
+Event: 19.913 Thread 0x00007fdba8114800 nmethod 948 0x00007fdb99327690 code [0x00007fdb993277e0, 0x00007fdb99327930]
+Event: 19.913 Thread 0x00007fdba8114800  949       3       java.util.concurrent.locks.AbstractQueuedSynchronizer::isOnSyncQueue (33 bytes)
+Event: 19.913 Thread 0x00007fdba8114800 nmethod 949 0x00007fdb99329590 code [0x00007fdb99329720, 0x00007fdb99329ab0]
+Event: 19.913 Thread 0x00007fdba8114800  950       3       java.util.concurrent.locks.LockSupport::setBlocker (12 bytes)
+Event: 19.913 Thread 0x00007fdba8114800 nmethod 950 0x00007fdb99329290 code [0x00007fdb993293e0, 0x00007fdb99329530]
+Event: 20.012 Thread 0x00007fdba8114800  951       3       java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask::getDelay (20 bytes)
+Event: 20.013 Thread 0x00007fdba8114800 nmethod 951 0x00007fdb99328cd0 code [0x00007fdb99328e60, 0x00007fdb99329188]
+Event: 20.013 Thread 0x00007fdba8114800  952       3       java.util.concurrent.TimeUnit$1::convert (6 bytes)
+Event: 20.013 Thread 0x00007fdba8114800 nmethod 952 0x00007fdb99328850 code [0x00007fdb993289c0, 0x00007fdb99328be8]
+Event: 20.013 Thread 0x00007fdba8114800  953       3       java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue::setIndex (16 bytes)
+Event: 20.013 Thread 0x00007fdba8114800 nmethod 953 0x00007fdb9932b810 code [0x00007fdb9932b980, 0x00007fdb9932bcf0]
+Event: 20.013 Thread 0x00007fdba8114800  954       3       com.google.common.collect.FluentIterable::<init> (10 bytes)
+Event: 20.013 Thread 0x00007fdba8114800 nmethod 954 0x00007fdb9932b410 code [0x00007fdb9932b580, 0x00007fdb9932b750]
+Event: 20.013 Thread 0x00007fdba8114800  955       3       java.util.concurrent.locks.AbstractQueuedSynchronizer::compareAndSetWaitStatus (13 bytes)
+Event: 20.013 Thread 0x00007fdba8114800 nmethod 955 0x00007fdb9932b110 code [0x00007fdb9932b260, 0x00007fdb9932b3b0]
+Event: 20.312 Thread 0x00007fdba8114800  956       3       java.util.ArrayList$ListItr::previous (59 bytes)
+Event: 20.313 Thread 0x00007fdba8114800 nmethod 956 0x00007fdb9932a810 code [0x00007fdb9932a9c0, 0x00007fdb9932ae88]
+Event: 20.313 Thread 0x00007fdba8114800  957       3       org.fusesource.jansi.Ansi::fg (17 bytes)
+Event: 20.313 Thread 0x00007fdba8114800 nmethod 957 0x00007fdb9932bdd0 code [0x00007fdb9932bfc0, 0x00007fdb9932c928]
+Event: 20.313 Thread 0x00007fdba8114800  958       3       org.fusesource.jansi.Ansi$Color::fg (8 bytes)
+Event: 20.313 Thread 0x00007fdba8114800 nmethod 958 0x00007fdb9932a4d0 code [0x00007fdb9932a620, 0x00007fdb9932a770]
+Event: 21.512 Thread 0x00007fdba8114800  959       3       java.nio.Buffer::hasRemaining (17 bytes)
+Event: 21.513 Thread 0x00007fdba8114800 nmethod 959 0x00007fdb9932cf10 code [0x00007fdb9932d080, 0x00007fdb9932d230]
+Event: 21.913 Thread 0x00007fdba8114800  960       3       java.nio.CharBuffer::hasArray (20 bytes)
+Event: 21.913 Thread 0x00007fdba8114800 nmethod 960 0x00007fdb9932d290 code [0x00007fdb9932d400, 0x00007fdb9932d5f0]
+Event: 21.913 Thread 0x00007fdba8114800  961       3       java.nio.ByteBuffer::hasArray (20 bytes)
+Event: 21.913 Thread 0x00007fdba8114800 nmethod 961 0x00007fdb9932d650 code [0x00007fdb9932d7c0, 0x00007fdb9932d9b0]
+Event: 22.512 Thread 0x00007fdba8114800  962       3       java.lang.AbstractStringBuilder::delete (80 bytes)
+Event: 22.513 Thread 0x00007fdba8114800 nmethod 962 0x00007fdb9932da10 code [0x00007fdb9932dbc0, 0x00007fdb9932dfe8]
+Event: 22.513 Thread 0x00007fdba8114800  963       3       org.gradle.internal.logging.console.DefaultWorkInProgressFormatter::trim (36 bytes)
+Event: 22.513 Thread 0x00007fdba8114800 nmethod 963 0x00007fdb9932e150 code [0x00007fdb9932e320, 0x00007fdb9932ea28]
+Event: 23.112 Thread 0x00007fdba8114800  965       3       sun.nio.cs.UTF_8$Encoder::encodeLoop (28 bytes)
+Event: 23.113 Thread 0x00007fdba8114800 nmethod 965 0x00007fdb9932f110 code [0x00007fdb9932f2c0, 0x00007fdb9932f7f8]
+Event: 23.312 Thread 0x00007fdba8114800  966   !   3       java.nio.CharBuffer::wrap (20 bytes)
+Event: 23.313 Thread 0x00007fdba8114800 nmethod 966 0x00007fdb9932f950 code [0x00007fdb9932fae0, 0x00007fdb9932fe98]
+Event: 23.313 Thread 0x00007fdba8114800  967       3       java.nio.HeapCharBuffer::<init> (14 bytes)
+Event: 23.313 Thread 0x00007fdba8114800 nmethod 967 0x00007fdb99330110 code [0x00007fdb99330280, 0x00007fdb993304c8]
+Event: 23.812 Thread 0x00007fdba8114800  968       3       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator::onUpdateNow (54 bytes)
+Event: 23.813 Thread 0x00007fdba8114800 nmethod 968 0x00007fdb99330610 code [0x00007fdb99330800, 0x00007fdb99330f88]
+Event: 23.913 Thread 0x00007fdba8114800  969       3       org.gradle.internal.logging.console.WorkInProgressRenderer$AssociationLabel::renderNow (24 bytes)
+Event: 23.913 Thread 0x00007fdba8114800 nmethod 969 0x00007fdb99331250 code [0x00007fdb993313e0, 0x00007fdb99331668]
+Event: 23.913 Thread 0x00007fdba8114800  970   !   3       java.nio.charset.CharsetEncoder::encode (285 bytes)
+Event: 23.914 Thread 0x00007fdba8114800 nmethod 970 0x00007fdb993317d0 code [0x00007fdb99331aa0, 0x00007fdb99333098]
+Event: 24.212 Thread 0x00007fdba8114800  971       3       java.util.concurrent.atomic.AtomicLong::compareAndSet (13 bytes)
+Event: 24.213 Thread 0x00007fdba8114800 nmethod 971 0x00007fdb99333950 code [0x00007fdb99333aa0, 0x00007fdb99333c10]
+Event: 24.712 Thread 0x00007fdba8114800  972       3       java.util.concurrent.locks.ReentrantLock::lock (8 bytes)
+Event: 24.713 Thread 0x00007fdba8114800 nmethod 972 0x00007fdb99333c90 code [0x00007fdb99333e00, 0x00007fdb99334028]
+Event: 24.713 Thread 0x00007fdba8114800  973       3       java.util.concurrent.locks.ReentrantLock$NonfairSync::lock (25 bytes)
+Event: 24.713 Thread 0x00007fdba8114800 nmethod 973 0x00007fdb993340d0 code [0x00007fdb993342a0, 0x00007fdb99334af8]
+Event: 25.212 Thread 0x00007fdba8114800  974       3       org.gradle.internal.logging.console.DefaultAnsiExecutor$AnsiContextImpl::cursorAt (14 bytes)
+Event: 25.213 Thread 0x00007fdba8114800 nmethod 974 0x00007fdb99334d50 code [0x00007fdb99334ec0, 0x00007fdb993350c8]
+Event: 25.512 Thread 0x00007fdba8114800  975  s    3       java.io.BufferedOutputStream::flush (12 bytes)
+Event: 25.513 Thread 0x00007fdba8114800 nmethod 975 0x00007fdb993351d0 code [0x00007fdb99335360, 0x00007fdb99335858]
+Event: 25.513 Thread 0x00007fdba8114800  976       3       java.io.OutputStream::flush (1 bytes)
+Event: 25.513 Thread 0x00007fdba8114800 nmethod 976 0x00007fdb993359d0 code [0x00007fdb99335b20, 0x00007fdb99335c70]
+Event: 25.612 Thread 0x00007fdba8114800  977       3       java.lang.InheritableThreadLocal::getMap (5 bytes)
+Event: 25.613 Thread 0x00007fdba8114800 nmethod 977 0x00007fdb99335cd0 code [0x00007fdb99335e40, 0x00007fdb99335f90]
+Event: 25.712 Thread 0x00007fdba8114800  978       3       org.gradle.internal.logging.console.DefaultAnsiFactory::create (19 bytes)
+Event: 25.713 Thread 0x00007fdba8114800 nmethod 978 0x00007fdb99336050 code [0x00007fdb993362a0, 0x00007fdb99337118]
+Event: 25.713 Thread 0x00007fdba8114800  979       3       org.fusesource.jansi.Ansi::ansi (22 bytes)
+Event: 25.713 Thread 0x00007fdba8114800 nmethod 979 0x00007fdb99337890 code [0x00007fdb99337a80, 0x00007fdb993383a8]
+Event: 25.912 Thread 0x00007fdba8114800  980       3       sun.nio.cs.StreamEncoder::implWrite (156 bytes)
+Event: 25.913 Thread 0x00007fdba8114800 nmethod 980 0x00007fdb99338790 code [0x00007fdb99338a00, 0x00007fdb99339888]
+Event: 26.012 Thread 0x00007fdba8114800  981       3       org.gradle.internal.time.TimeSource$1::nanoTime (4 bytes)
+Event: 26.013 Thread 0x00007fdba8114800 nmethod 981 0x00007fdb9933a0d0 code [0x00007fdb9933a240, 0x00007fdb9933a3b0]
+Event: 26.013 Thread 0x00007fdba8114800  982       3       java.lang.Math::max (12 bytes)
+Event: 26.013 Thread 0x00007fdba8114800 nmethod 982 0x00007fdb9933a450 code [0x00007fdb9933a5c0, 0x00007fdb9933a750]
+Event: 26.112 Thread 0x00007fdba8114800  983       3       java.util.LinkedHashMap::values (25 bytes)
+Event: 26.113 Thread 0x00007fdba8114800 nmethod 983 0x00007fdb9933a7d0 code [0x00007fdb9933a940, 0x00007fdb9933ac70]
+Event: 26.113 Thread 0x00007fdba8114800  984       3       java.util.LinkedHashMap$LinkedValues::iterator (12 bytes)
+Event: 26.113 Thread 0x00007fdba8114800 nmethod 984 0x00007fdb9933add0 code [0x00007fdb9933af40, 0x00007fdb9933b250]
+Event: 26.212 Thread 0x00007fdba8114800  985       3       org.gradle.internal.time.MonotonicClock::getCurrentTime (70 bytes)
+Event: 26.213 Thread 0x00007fdba8114800 nmethod 985 0x00007fdb9933b3d0 code [0x00007fdb9933b620, 0x00007fdb9933c6d0]
+Event: 26.213 Thread 0x00007fdba8114800  986       3       java.util.concurrent.TimeUnit$1::toMillis (6 bytes)
+Event: 26.213 Thread 0x00007fdba8114800 nmethod 986 0x00007fdb9933d210 code [0x00007fdb9933d380, 0x00007fdb9933d4f0]
+Event: 26.312 Thread 0x00007fdba8114800  987       3       java.util.concurrent.ThreadPoolExecutor$Worker::lock (6 bytes)
+Event: 26.313 Thread 0x00007fdba8114800 nmethod 987 0x00007fdb9933d590 code [0x00007fdb9933d740, 0x00007fdb9933dec8]
+Event: 26.313 Thread 0x00007fdba8114800  988       3       java.util.concurrent.ThreadPoolExecutor$Worker::tryAcquire (20 bytes)
+Event: 26.313 Thread 0x00007fdba8114800 nmethod 988 0x00007fdb9933e110 code [0x00007fdb9933e280, 0x00007fdb9933e630]
+Event: 26.412 Thread 0x00007fdba8114800  989       3       java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject::checkInterruptWhileWaiting (27 bytes)
+Event: 26.413 Thread 0x00007fdba8114800 nmethod 989 0x00007fdb9933e710 code [0x00007fdb9933e8e0, 0x00007fdb9933ef38]
+Event: 26.413 Thread 0x00007fdba8114800  990       3       java.util.concurrent.locks.AbstractQueuedSynchronizer::transferAfterCancelledWait (34 bytes)
+Event: 26.413 Thread 0x00007fdba8114800 nmethod 990 0x00007fdb9933f190 code [0x00007fdb9933f340, 0x00007fdb9933f978]
+Event: 26.512 Thread 0x00007fdba8114800  991       3       java.lang.StringBuilder::append (8 bytes)
+Event: 26.513 Thread 0x00007fdba8114800 nmethod 991 0x00007fdb9933fbd0 code [0x00007fdb9933fd40, 0x00007fdb9933fec8]
+Event: 26.513 Thread 0x00007fdba8114800  992       3       java.lang.AbstractStringBuilder::append (70 bytes)
+Event: 26.513 Thread 0x00007fdba8114800 nmethod 992 0x00007fdb9933ff50 code [0x00007fdb99340140, 0x00007fdb99340878]
+Event: 26.612 Thread 0x00007fdba8114800  993       3       com.google.common.collect.Lists::newArrayList (28 bytes)
+Event: 26.613 Thread 0x00007fdba8114800 nmethod 993 0x00007fdb99340b90 code [0x00007fdb99340d60, 0x00007fdb99341298]
+Event: 26.613 Thread 0x00007fdba8114800  994       3       com.google.common.collect.Lists::computeArrayListCapacity (23 bytes)
+Event: 26.613 Thread 0x00007fdba8114800 nmethod 994 0x00007fdb99341510 code [0x00007fdb99341680, 0x00007fdb99341948]
+Event: 26.712 Thread 0x00007fdba8114800  995       3       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator$OperationGroup::maybeFlushOutput (34 bytes)
+Event: 26.713 Thread 0x00007fdba8114800 nmethod 995 0x00007fdb99341a50 code [0x00007fdb99341c40, 0x00007fdb993423a8]
+Event: 26.713 Thread 0x00007fdba8114800  996       3       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator::access$800 (4 bytes)
+Event: 26.713 Thread 0x00007fdba8114800 nmethod 996 0x00007fdb99342710 code [0x00007fdb99342860, 0x00007fdb99342990]
+Event: 28.312 Thread 0x00007fdba8114800  997       3       org.gradle.internal.logging.console.ThrottlingOutputEventListener::renderNow (60 bytes)
+Event: 28.313 Thread 0x00007fdba8114800 nmethod 997 0x00007fdb99342a10 code [0x00007fdb99342be0, 0x00007fdb993432a8]
+Event: 28.313 Thread 0x00007fdba8106000  998 %     4       sun.nio.cs.UTF_8$Encoder::encodeArrayLoop @ 73 (489 bytes)
+Event: 28.330 Thread 0x00007fdba8106000 nmethod 998% 0x00007fdb99346750 code [0x00007fdb99346900, 0x00007fdb99346f98]
+Event: 28.412 Thread 0x00007fdba8114800 1000       3       org.gradle.internal.logging.console.MultiLineBuildProgressArea::redraw (203 bytes)
+Event: 28.414 Thread 0x00007fdba8114800 nmethod 1000 0x00007fdb99343c90 code [0x00007fdb99343fe0, 0x00007fdb99345868]
+Event: 28.414 Thread 0x00007fdba8114800  999       3       org.gradle.internal.logging.console.BuildStatusRenderer::renderNow (52 bytes)
+Event: 28.414 Thread 0x00007fdba8114800 nmethod 999 0x00007fdb99347510 code [0x00007fdb99347700, 0x00007fdb99347e08]
+Event: 29.888 Thread 0x00007fdba8106000 1001       4       java.util.ArrayList$Itr::next (66 bytes)
+Event: 30.801 Thread 0x00007fdba8114800 1002       1       org.gradle.internal.logging.sink.GroupingProgressLogEventGenerator$OperationState::maybeFlushOutput (1 bytes)
+Event: 30.964 Thread 0x00007fdba8114800 nmethod 1002 0x00007fdb993439d0 code [0x00007fdb99343b20, 0x00007fdb99343c30]
+Event: 31.336 Thread 0x00007fdba8106000 nmethod 1001 0x00007fdb993435d0 code [0x00007fdb99343720, 0x00007fdb99343858]
+Event: 31.347 Thread 0x00007fdba8106000 1003 %     4       java.io.FilterOutputStream::write @ 28 (51 bytes)
+Event: 31.540 Thread 0x00007fdba8114800 1004       3       org.gradle.internal.logging.console.WorkInProgressRenderer::renderNow (352 bytes)
+Event: 31.567 Thread 0x00007fdba8106000 nmethod 1003% 0x00007fdb993483d0 code [0x00007fdb99348580, 0x00007fdb99349368]
+
+GC Heap History (4 events):
+Event: 0.739 GC heap before
+{Heap before GC invocations=0 (full 0):
+ def new generation   total 19648K, used 17472K [0x00000000fc000000, 0x00000000fd550000, 0x00000000fd550000)
+  eden space 17472K, 100% used [0x00000000fc000000, 0x00000000fd110000, 0x00000000fd110000)
+  from space 2176K,   0% used [0x00000000fd110000, 0x00000000fd110000, 0x00000000fd330000)
+  to   space 2176K,   0% used [0x00000000fd330000, 0x00000000fd330000, 0x00000000fd550000)
+ tenured generation   total 43712K, used 0K [0x00000000fd550000, 0x0000000100000000, 0x0000000100000000)
+   the space 43712K,   0% used [0x00000000fd550000, 0x00000000fd550000, 0x00000000fd550200, 0x0000000100000000)
+ Metaspace       used 7089K, capacity 7294K, committed 7552K, reserved 1056768K
+  class space    used 796K, capacity 879K, committed 896K, reserved 1048576K
+Event: 0.745 GC heap after
+Heap after GC invocations=1 (full 0):
+ def new generation   total 19648K, used 2176K [0x00000000fc000000, 0x00000000fd550000, 0x00000000fd550000)
+  eden space 17472K,   0% used [0x00000000fc000000, 0x00000000fc000000, 0x00000000fd110000)
+  from space 2176K, 100% used [0x00000000fd330000, 0x00000000fd550000, 0x00000000fd550000)
+  to   space 2176K,   0% used [0x00000000fd110000, 0x00000000fd110000, 0x00000000fd330000)
+ tenured generation   total 43712K, used 506K [0x00000000fd550000, 0x0000000100000000, 0x0000000100000000)
+   the space 43712K,   1% used [0x00000000fd550000, 0x00000000fd5cebf0, 0x00000000fd5cec00, 0x0000000100000000)
+ Metaspace       used 7089K, capacity 7294K, committed 7552K, reserved 1056768K
+  class space    used 796K, capacity 879K, committed 896K, reserved 1048576K
+}
+Event: 1.122 GC heap before
+{Heap before GC invocations=1 (full 0):
+ def new generation   total 19648K, used 19648K [0x00000000fc000000, 0x00000000fd550000, 0x00000000fd550000)
+  eden space 17472K, 100% used [0x00000000fc000000, 0x00000000fd110000, 0x00000000fd110000)
+  from space 2176K, 100% used [0x00000000fd330000, 0x00000000fd550000, 0x00000000fd550000)
+  to   space 2176K,   0% used [0x00000000fd110000, 0x00000000fd110000, 0x00000000fd330000)
+ tenured generation   total 43712K, used 506K [0x00000000fd550000, 0x0000000100000000, 0x0000000100000000)
+   the space 43712K,   1% used [0x00000000fd550000, 0x00000000fd5cebf0, 0x00000000fd5cec00, 0x0000000100000000)
+ Metaspace       used 10240K, capacity 10462K, committed 10752K, reserved 1058816K
+  class space    used 1287K, capacity 1421K, committed 1536K, reserved 1048576K
+Event: 1.129 GC heap after
+Heap after GC invocations=2 (full 0):
+ def new generation   total 19648K, used 2176K [0x00000000fc000000, 0x00000000fd550000, 0x00000000fd550000)
+  eden space 17472K,   0% used [0x00000000fc000000, 0x00000000fc000000, 0x00000000fd110000)
+  from space 2176K, 100% used [0x00000000fd110000, 0x00000000fd330000, 0x00000000fd330000)
+  to   space 2176K,   0% used [0x00000000fd330000, 0x00000000fd330000, 0x00000000fd550000)
+ tenured generation   total 43712K, used 2086K [0x00000000fd550000, 0x0000000100000000, 0x0000000100000000)
+   the space 43712K,   4% used [0x00000000fd550000, 0x00000000fd759938, 0x00000000fd759a00, 0x0000000100000000)
+ Metaspace       used 10240K, capacity 10462K, committed 10752K, reserved 1058816K
+  class space    used 1287K, capacity 1421K, committed 1536K, reserved 1048576K
+}
+
+Deoptimization events (4 events):
+Event: 0.410 Thread 0x00007fdba804b800 Uncommon trap: reason=null_check action=make_not_entrant pc=0x00007fdb9919608c method=java.lang.String.equals(Ljava/lang/Object;)Z @ 8
+Event: 0.972 Thread 0x00007fdba804b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fdb9925836c method=java.util.HashMap.hash(Ljava/lang/Object;)I @ 1
+Event: 1.052 Thread 0x00007fdba804b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fdb9924f064 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 129
+Event: 1.214 Thread 0x00007fdba86b1000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fdb991e10d4 method=java.lang.String.replace(CC)Ljava/lang/String; @ 26
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (26 events):
+Event: 0.022 Thread 0x00007fdba804b800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x00000000fc007cc0) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86
+Event: 0.022 Thread 0x00007fdba804b800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x00000000fc007fa8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspo
+Event: 0.314 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc66d530) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.314 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc66d740) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.314 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc670110) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.314 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc670320) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.319 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc671058) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.319 Thread 0x00007fdba804b800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000fc671268) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/jvm.cpp, line 1509]
+Event: 0.410 Thread 0x00007fdba804b800 Implicit null exception at 0x00007fdb99195e98 to 0x00007fdb9919607d
+Event: 0.538 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 100> (0x00000000fcb5fe18) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 371]
+Event: 0.539 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 18> (0x00000000fcb60d50) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 371]
+Event: 0.539 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcb61980) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.689 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcff64a8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.689 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcff7368) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.875 Thread 0x00007fdba804b800 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000fc5e00a0) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 0.877 Thread 0x00007fdba804b800 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000fc5ed790) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 0.984 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fca30b50) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.984 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fca32870) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.985 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fca473f0) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.990 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fca4b600) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.997 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcab99e0) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.998 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcabada8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.998 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcabc480) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 0.998 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcabd5b8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 1.001 Thread 0x00007fdba804b800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000fcac0cb8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/runtime/sharedRuntime.cpp, line 609]
+Event: 1.013 Thread 0x00007fdba804b800 Exception <a 'java/lang/NoClassDefFoundError': org/slf4j/impl/StaticMarkerBinder> (0x00000000fcb7a478) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/openjdk/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 19
+
+Events (250 events):
+Event: 1.107 loading class sun/nio/ch/Net done
+Event: 1.107 loading class sun/nio/ch/Net$1
+Event: 1.107 loading class java/net/ProtocolFamily
+Event: 1.107 loading class java/net/ProtocolFamily done
+Event: 1.107 loading class sun/nio/ch/Net$1 done
+Event: 1.110 loading class sun/nio/ch/Net$3
+Event: 1.110 loading class sun/nio/ch/Net$3 done
+Event: 1.110 loading class java/net/StandardProtocolFamily
+Event: 1.110 loading class java/net/StandardProtocolFamily done
+Event: 1.110 loading class sun/nio/ch/SocketAdaptor
+Event: 1.111 loading class java/net/Socket
+Event: 1.111 loading class java/net/Socket done
+Event: 1.111 loading class sun/nio/ch/SocketAdaptor done
+Event: 1.111 loading class sun/net/NetHooks
+Event: 1.111 loading class sun/net/NetHooks done
+Event: 1.111 loading class sun/net/sdp/SdpProvider
+Event: 1.111 loading class sun/net/NetHooks$Provider
+Event: 1.111 loading class sun/net/NetHooks$Provider done
+Event: 1.111 loading class sun/net/sdp/SdpProvider done
+Event: 1.112 loading class org/gradle/internal/logging/sink/GroupingProgressLogEventGenerator$OperationState
+Event: 1.112 loading class org/gradle/internal/logging/sink/GroupingProgressLogEventGenerator$OperationState done
+Event: 1.112 loading class org/gradle/internal/logging/console/ProgressOperation
+Event: 1.112 loading class org/gradle/internal/logging/console/ProgressOperation done
+Event: 1.113 loading class net/rubygrapefruit/platform/internal/MutableTerminalSize
+Event: 1.113 loading class net/rubygrapefruit/platform/internal/MutableTerminalSize done
+Event: 1.113 loading class org/gradle/internal/logging/console/WorkInProgressRenderer$AssociationLabel
+Event: 1.113 loading class org/gradle/internal/logging/console/WorkInProgressRenderer$AssociationLabel done
+Event: 1.114 loading class org/gradle/internal/logging/console/DefaultRedrawableLabel$1
+Event: 1.114 loading class org/gradle/internal/logging/console/DefaultRedrawableLabel$1 done
+Event: 1.114 loading class org/gradle/internal/logging/console/DefaultColorMap$AttributeColor
+Event: 1.114 loading class org/gradle/internal/logging/console/DefaultColorMap$AttributeColor done
+Event: 1.114 loading class org/fusesource/jansi/Ansi$Attribute
+Event: 1.114 loading class org/fusesource/jansi/Ansi$Attribute done
+Event: 1.115 loading class org/gradle/internal/remote/internal/inet/SocketConnectCompletion
+Event: 1.115 loading class org/gradle/internal/remote/internal/inet/SocketConnectCompletion done
+Event: 1.115 loading class org/gradle/internal/remote/internal/MessageSerializer
+Event: 1.115 loading class org/gradle/internal/remote/internal/MessageSerializer done
+Event: 1.115 loading class org/gradle/internal/remote/internal/RemoteConnection
+Event: 1.115 loading class org/gradle/internal/remote/internal/RemoteConnection done
+Event: 1.116 loading class org/gradle/internal/serialize/Serializers
+Event: 1.116 loading class org/gradle/internal/serialize/Serializers done
+Event: 1.116 loading class org/gradle/internal/serialize/StatefulSerializer
+Event: 1.116 loading class org/gradle/internal/serialize/StatefulSerializer done
+Event: 1.116 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter
+Event: 1.116 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter done
+Event: 1.116 loading class org/gradle/internal/serialize/ObjectReader
+Event: 1.116 loading class org/gradle/internal/serialize/ObjectReader done
+Event: 1.116 loading class org/gradle/internal/serialize/ObjectWriter
+Event: 1.116 loading class org/gradle/internal/serialize/ObjectWriter done
+Event: 1.116 loading class org/gradle/internal/remote/internal/inet/SocketConnection
+Event: 1.116 loading class org/gradle/internal/remote/internal/inet/SocketConnection done
+Event: 1.117 loading class org/gradle/internal/remote/internal/RecoverableMessageIOException
+Event: 1.117 loading class org/gradle/internal/remote/internal/RecoverableMessageIOException done
+Event: 1.117 loading class org/gradle/internal/remote/internal/MessageIOException
+Event: 1.117 loading class org/gradle/internal/remote/internal/MessageIOException done
+Event: 1.117 loading class org/gradle/internal/remote/internal/inet/SocketConnection$SocketOutputStream
+Event: 1.117 loading class org/gradle/internal/remote/internal/inet/SocketConnection$SocketOutputStream done
+Event: 1.117 loading class org/gradle/internal/remote/internal/inet/SocketConnection$SocketInputStream
+Event: 1.117 loading class org/gradle/internal/remote/internal/inet/SocketConnection$SocketInputStream done
+Event: 1.118 loading class org/gradle/internal/remote/internal/KryoBackedMessageSerializer
+Event: 1.118 loading class org/gradle/internal/remote/internal/KryoBackedMessageSerializer done
+Event: 1.118 loading class java/nio/DirectByteBuffer$Deallocator
+Event: 1.118 loading class java/nio/DirectByteBuffer$Deallocator done
+Event: 1.118 loading class java/nio/channels/ClosedSelectorException
+Event: 1.118 loading class java/nio/channels/ClosedSelectorException done
+Event: 1.118 loading class java/nio/channels/Selector
+Event: 1.118 loading class java/nio/channels/Selector done
+Event: 1.118 loading class sun/nio/ch/EPollSelectorImpl
+Event: 1.119 loading class sun/nio/ch/SelectorImpl
+Event: 1.119 loading class java/nio/channels/spi/AbstractSelector
+Event: 1.119 loading class java/nio/channels/spi/AbstractSelector done
+Event: 1.119 loading class sun/nio/ch/SelectorImpl done
+Event: 1.119 loading class sun/nio/ch/EPollSelectorImpl done
+Event: 1.119 loading class java/util/concurrent/atomic/AtomicBoolean
+Event: 1.119 loading class java/util/concurrent/atomic/AtomicBoolean done
+Event: 1.119 loading class sun/nio/ch/Util
+Event: 1.119 loading class sun/nio/ch/Util done
+Event: 1.119 loading class sun/nio/ch/Util$2
+Event: 1.119 loading class sun/nio/ch/Util$2 done
+Event: 1.119 loading class sun/nio/ch/Util$1
+Event: 1.119 loading class sun/nio/ch/Util$1 done
+Event: 1.119 loading class sun/nio/ch/Util$3
+Event: 1.119 loading class sun/nio/ch/Util$3 done
+Event: 1.119 loading class sun/nio/ch/EPollArrayWrapper
+Event: 1.120 loading class sun/nio/ch/EPollArrayWrapper done
+Event: 1.120 loading class sun/security/action/GetIntegerAction
+Event: 1.120 loading class sun/security/action/GetIntegerAction done
+Event: 1.120 loading class sun/nio/ch/AllocatedNativeObject
+Event: 1.120 loading class sun/nio/ch/NativeObject
+Event: 1.120 loading class sun/nio/ch/NativeObject done
+Event: 1.120 loading class sun/nio/ch/AllocatedNativeObject done
+Event: 1.120 loading class sun/nio/ch/SelectionKeyImpl
+Event: 1.120 loading class java/nio/channels/spi/AbstractSelectionKey
+Event: 1.120 loading class java/nio/channels/SelectionKey
+Event: 1.120 loading class java/nio/channels/SelectionKey done
+Event: 1.120 loading class java/nio/channels/spi/AbstractSelectionKey done
+Event: 1.120 loading class sun/nio/ch/SelectionKeyImpl done
+Event: 1.121 loading class org/gradle/internal/remote/internal/inet/SocketInetAddress
+Event: 1.121 loading class org/gradle/internal/remote/internal/inet/SocketInetAddress done
+Event: 1.122 loading class org/gradle/internal/remote/internal/inet/SocketInetAddress$Serializer
+Event: 1.122 loading class org/gradle/internal/remote/internal/inet/SocketInetAddress$Serializer done
+Event: 1.122 loading class org/gradle/internal/serialize/kryo/KryoBackedDecoder
+Event: 1.122 loading class org/gradle/internal/serialize/kryo/KryoBackedDecoder done
+Event: 1.122 Executing VM operation: GenCollectForAllocation
+Event: 1.129 Executing VM operation: GenCollectForAllocation done
+Event: 1.129 loading class com/esotericsoftware/kryo/KryoException
+Event: 1.129 loading class com/esotericsoftware/kryo/KryoException done
+Event: 1.130 loading class com/esotericsoftware/kryo/io/Input
+Event: 1.130 loading class com/esotericsoftware/kryo/io/Input done
+Event: 1.133 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter$1
+Event: 1.133 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter$1 done
+Event: 1.133 loading class org/gradle/internal/serialize/kryo/KryoBackedEncoder
+Event: 1.133 loading class org/gradle/internal/serialize/kryo/KryoBackedEncoder done
+Event: 1.133 loading class org/gradle/internal/serialize/AbstractEncoder
+Event: 1.133 loading class org/gradle/internal/serialize/AbstractEncoder done
+Event: 1.133 loading class org/gradle/internal/serialize/AbstractEncoder$EncoderStream
+Event: 1.133 loading class org/gradle/internal/serialize/AbstractEncoder$EncoderStream done
+Event: 1.133 loading class com/esotericsoftware/kryo/io/Output
+Event: 1.133 loading class com/esotericsoftware/kryo/io/Output done
+Event: 1.135 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter$2
+Event: 1.135 loading class org/gradle/internal/serialize/Serializers$StatefulSerializerAdapter$2 done
+Event: 1.135 loading class org/gradle/launcher/daemon/client/DaemonClientConnection
+Event: 1.135 loading class org/gradle/launcher/daemon/client/DaemonClientConnection done
+Event: 1.138 loading class sun/nio/ch/IOStatus
+Event: 1.138 loading class sun/nio/ch/IOStatus done
+Event: 1.139 loading class java/nio/channels/spi/AbstractSelector$1
+Event: 1.139 loading class java/nio/channels/spi/AbstractSelector$1 done
+Event: 1.140 loading class org/gradle/launcher/daemon/diagnostics/DaemonDiagnostics
+Event: 1.140 loading class org/gradle/launcher/daemon/diagnostics/DaemonDiagnostics done
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonClientInputForwarder
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonClientInputForwarder done
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonClientInputForwarder$ForwardTextStreamToConnection
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonClientInputForwarder$ForwardTextStreamToConnection done
+Event: 1.141 loading class org/gradle/launcher/daemon/client/InputForwarder
+Event: 1.141 loading class org/gradle/launcher/daemon/client/InputForwarder done
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonCancelForwarder
+Event: 1.141 loading class org/gradle/launcher/daemon/client/DaemonCancelForwarder done
+Event: 1.142 loading class org/gradle/launcher/daemon/client/DaemonCancelForwarder$1
+Event: 1.142 loading class org/gradle/launcher/daemon/client/DaemonCancelForwarder$1 done
+Event: 1.142 loading class org/gradle/util/DisconnectableInputStream
+Event: 1.142 loading class org/gradle/util/DisconnectableInputStream done
+Event: 1.143 loading class org/gradle/util/BulkReadInputStream
+Event: 1.143 loading class org/gradle/util/BulkReadInputStream done
+Event: 1.145 loading class org/gradle/util/DisconnectableInputStream$ThreadExecuter
+Event: 1.145 loading class org/gradle/util/DisconnectableInputStream$ThreadExecuter done
+Event: 1.145 loading class org/gradle/util/DisconnectableInputStream$1
+Event: 1.145 loading class org/gradle/util/DisconnectableInputStream$1 done
+Event: 1.150 Thread 0x00007fdba8785800 Thread added: 0x00007fdba8785800
+Event: 1.150 loading class org/gradle/internal/io/StreamByteBuffer
+Event: 1.150 loading class org/gradle/internal/io/StreamByteBuffer done
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferOutputStream
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferOutputStream done
+Event: 1.151 loading class java/nio/charset/CharacterCodingException
+Event: 1.151 loading class java/nio/charset/CharacterCodingException done
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferInputStream
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferInputStream done
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferChunk
+Event: 1.151 loading class org/gradle/internal/io/StreamByteBuffer$StreamByteBufferChunk done
+Event: 1.152 loading class org/gradle/launcher/daemon/client/InputForwarder$1
+Event: 1.152 loading class org/gradle/launcher/daemon/client/InputForwarder$1 done
+Event: 1.152 loading class java/nio/channels/AsynchronousCloseException
+Event: 1.155 loading class java/nio/channels/ClosedChannelException
+Event: 1.155 loading class java/nio/channels/ClosedChannelException done
+Event: 1.155 loading class java/nio/channels/AsynchronousCloseException done
+Event: 1.155 loading class org/gradle/internal/concurrent/ManagedExecutorImpl$1
+Event: 1.155 loading class org/gradle/internal/concurrent/ManagedExecutorImpl$1 done
+Event: 1.155 loading class org/gradle/internal/concurrent/ThreadFactoryImpl$ManagedThreadRunnable
+Event: 1.155 loading class org/gradle/internal/concurrent/ThreadFactoryImpl$ManagedThreadRunnable done
+Event: 1.156 Thread 0x00007fdba8788000 Thread added: 0x00007fdba8788000
+Event: 1.163 loading class org/gradle/internal/concurrent/GradleThread
+Event: 1.163 loading class org/gradle/internal/concurrent/GradleThread done
+Event: 1.164 loading class org/gradle/internal/concurrent/GradleThread$1
+Event: 1.164 loading class org/gradle/internal/concurrent/GradleThread$1 done
+Event: 1.212 loading class org/gradle/internal/logging/sink/GroupingProgressLogEventGenerator$OperationGroup
+Event: 1.212 loading class org/gradle/internal/logging/sink/GroupingProgressLogEventGenerator$OperationGroup done
+Event: 1.213 loading class org/gradle/internal/logging/console/BuildStatusRenderer$Phase
+Event: 1.213 loading class org/gradle/internal/logging/console/BuildStatusRenderer$Phase done
+Event: 1.213 loading class org/gradle/internal/logging/console/ProgressBar
+Event: 1.213 loading class org/gradle/internal/logging/console/ProgressBar done
+Event: 1.213 loading class org/gradle/internal/logging/format/TersePrettyDurationFormatter
+Event: 1.213 loading class org/gradle/internal/logging/format/TersePrettyDurationFormatter done
+Event: 1.214 loading class org/gradle/internal/logging/format/DurationFormatter
+Event: 1.214 loading class org/gradle/internal/logging/format/DurationFormatter done
+Event: 1.214 Thread 0x00007fdba86b1000 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fdb991e10d4
+Event: 1.214 Thread 0x00007fdba86b1000 DEOPT PACKING pc=0x00007fdb991e10d4 sp=0x00007fdb981d5440
+Event: 1.214 Thread 0x00007fdba86b1000 DEOPT UNPACKING pc=0x00007fdb9904547a sp=0x00007fdb981d53e8 mode 2
+Event: 1.214 loading class org/gradle/internal/time/TimeFormatting
+Event: 1.214 loading class org/gradle/internal/time/TimeFormatting done
+Event: 1.215 loading class com/google/common/primitives/Ints
+Event: 1.215 loading class com/google/common/primitives/Ints done
+Event: 1.217 loading class com/google/common/base/Converter
+Event: 1.217 loading class com/google/common/base/Converter done
+Event: 1.220 loading class com/google/common/primitives/Ints$IntConverter
+Event: 1.220 loading class com/google/common/primitives/Ints$IntConverter done
+Event: 1.221 loading class org/fusesource/jansi/Ansi$Color
+Event: 1.221 loading class org/fusesource/jansi/Ansi$Color done
+Event: 1.221 loading class java/lang/Class$4
+Event: 1.221 loading class java/lang/Class$4 done
+Event: 1.224 loading class org/gradle/internal/logging/console/DefaultColorMap$ForegroundColor
+Event: 1.224 loading class org/gradle/internal/logging/console/DefaultColorMap$ForegroundColor done
+Event: 1.225 loading class org/gradle/internal/logging/console/DefaultColorMap$CompositeColor
+Event: 1.225 loading class org/gradle/internal/logging/console/DefaultColorMap$CompositeColor done
+Event: 1.225 loading class com/google/common/collect/Lists$ReverseList
+Event: 1.225 loading class com/google/common/collect/Lists$ReverseList done
+Event: 1.225 loading class com/google/common/collect/Lists$RandomAccessReverseList
+Event: 1.225 loading class com/google/common/collect/Lists$RandomAccessReverseList done
+Event: 1.226 loading class java/util/ArrayList$ListItr
+Event: 1.226 loading class java/util/ArrayList$ListItr done
+Event: 1.228 Executing VM operation: Deoptimize
+Event: 1.228 Executing VM operation: Deoptimize done
+Event: 1.228 loading class com/google/common/collect/Lists$ReverseList$1
+Event: 1.228 loading class com/google/common/collect/Lists$ReverseList$1 done
+Event: 1.228 loading class org/fusesource/jansi/Ansi$Erase
+Event: 1.228 loading class org/fusesource/jansi/Ansi$Erase done
+Event: 1.247 loading class sun/reflect/MethodAccessorGenerator
+Event: 1.247 loading class sun/reflect/AccessorGenerator
+Event: 1.247 loading class sun/reflect/ClassFileConstants
+Event: 1.247 loading class sun/reflect/ClassFileConstants done
+Event: 1.247 loading class sun/reflect/AccessorGenerator done
+Event: 1.247 loading class sun/reflect/MethodAccessorGenerator done
+Event: 1.247 loading class sun/reflect/ByteVectorFactory
+Event: 1.247 loading class sun/reflect/ByteVectorFactory done
+Event: 1.247 loading class sun/reflect/ByteVectorImpl
+Event: 1.247 loading class sun/reflect/ByteVector
+Event: 1.247 loading class sun/reflect/ByteVector done
+Event: 1.247 loading class sun/reflect/ByteVectorImpl done
+Event: 1.247 loading class sun/reflect/ClassFileAssembler
+Event: 1.248 loading class sun/reflect/ClassFileAssembler done
+Event: 1.248 loading class sun/reflect/UTF8
+Event: 1.248 loading class sun/reflect/UTF8 done
+Event: 1.249 loading class sun/reflect/Label
+Event: 1.249 loading class sun/reflect/Label done
+Event: 1.249 loading class sun/reflect/Label$PatchInfo
+Event: 1.249 loading class sun/reflect/Label$PatchInfo done
+Event: 1.249 loading class sun/reflect/MethodAccessorGenerator$1
+Event: 1.249 loading class sun/reflect/MethodAccessorGenerator$1 done
+Event: 1.249 loading class sun/reflect/ClassDefiner
+Event: 1.249 loading class sun/reflect/ClassDefiner done
+Event: 1.249 loading class sun/reflect/ClassDefiner$1
+Event: 1.249 loading class sun/reflect/ClassDefiner$1 done
+Event: 4.076 Executing VM operation: EnableBiasedLocking
+Event: 4.076 Executing VM operation: EnableBiasedLocking done
+Event: 4.712 loading class com/google/common/base/Objects
+Event: 4.712 loading class com/google/common/base/Objects done
+Event: 4.713 loading class org/gradle/internal/logging/text/AbstractLineChoppingStyledTextOutput$StateContext
+Event: 4.713 loading class org/gradle/internal/logging/text/AbstractLineChoppingStyledTextOutput$StateContext done
+Event: 4.714 loading class org/gradle/internal/logging/console/DefaultTextArea$2
+Event: 4.714 loading class org/gradle/internal/logging/console/DefaultTextArea$2 done
+Event: 4.714 loading class org/gradle/internal/logging/console/DefaultTextArea$2$1
+Event: 4.714 loading class org/gradle/internal/logging/console/DefaultTextArea$2$1 done
+
+
+Dynamic libraries:
+fc000000-100180000 rw-p 00000000 00:00 0 
+100180000-140000000 ---p 00000000 00:00 0 
+5596f8a3b000-5596f8a3c000 r-xp 00000000 ca:01 394884                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/bin/java
+5596f8c3b000-5596f8c3c000 r--p 00000000 ca:01 394884                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/bin/java
+5596f8c3c000-5596f8c3d000 rw-p 00001000 ca:01 394884                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/bin/java
+5596fa251000-5596fa272000 rw-p 00000000 00:00 0                          [heap]
+7fdb70000000-7fdb70031000 rw-p 00000000 00:00 0 
+7fdb70031000-7fdb74000000 ---p 00000000 00:00 0 
+7fdb78000000-7fdb7817c000 rw-p 00000000 00:00 0 
+7fdb7817c000-7fdb7c000000 ---p 00000000 00:00 0 
+7fdb7c000000-7fdb7c54c000 rw-p 00000000 00:00 0 
+7fdb7c54c000-7fdb80000000 ---p 00000000 00:00 0 
+7fdb80000000-7fdb80021000 rw-p 00000000 00:00 0 
+7fdb80021000-7fdb84000000 ---p 00000000 00:00 0 
+7fdb84a78000-7fdb84a7b000 ---p 00000000 00:00 0 
+7fdb84a7b000-7fdb84b79000 rw-p 00000000 00:00 0 
+7fdb84b79000-7fdb84b7c000 ---p 00000000 00:00 0 
+7fdb84b7c000-7fdb84dfa000 rw-p 00000000 00:00 0 
+7fdb84dfa000-7fdb84e7a000 ---p 00000000 00:00 0 
+7fdb84e7a000-7fdb84e83000 r-xp 00000000 ca:01 394778                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libmanagement.so
+7fdb84e83000-7fdb85082000 ---p 00009000 ca:01 394778                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libmanagement.so
+7fdb85082000-7fdb85083000 r--p 00008000 ca:01 394778                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libmanagement.so
+7fdb85083000-7fdb85084000 rw-p 00009000 ca:01 394778                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libmanagement.so
+7fdb85084000-7fdb85086000 r-xp 00000000 ca:01 400354                     /home/ec2-user/.gradle/native/jansi/1.14/linux64/libjansi.so
+7fdb85086000-7fdb85285000 ---p 00002000 ca:01 400354                     /home/ec2-user/.gradle/native/jansi/1.14/linux64/libjansi.so
+7fdb85285000-7fdb85286000 rw-p 00001000 ca:01 400354                     /home/ec2-user/.gradle/native/jansi/1.14/linux64/libjansi.so
+7fdb85286000-7fdb852a3000 r-xp 00000000 ca:01 3470                       /lib64/libtinfo.so.5.7
+7fdb852a3000-7fdb854a2000 ---p 0001d000 ca:01 3470                       /lib64/libtinfo.so.5.7
+7fdb854a2000-7fdb854a7000 rw-p 0001c000 ca:01 3470                       /lib64/libtinfo.so.5.7
+7fdb854a7000-7fdb854cc000 r-xp 00000000 ca:01 3466                       /lib64/libncurses.so.5.7
+7fdb854cc000-7fdb856cc000 ---p 00025000 ca:01 3466                       /lib64/libncurses.so.5.7
+7fdb856cc000-7fdb856cd000 rw-p 00025000 ca:01 3466                       /lib64/libncurses.so.5.7
+7fdb856cd000-7fdb856d0000 r-xp 00000000 ca:01 400357                     /home/ec2-user/.gradle/native/25/linux-amd64-ncurses5/libnative-platform-curses.so
+7fdb856d0000-7fdb858d0000 ---p 00003000 ca:01 400357                     /home/ec2-user/.gradle/native/25/linux-amd64-ncurses5/libnative-platform-curses.so
+7fdb858d0000-7fdb858d1000 rw-p 00003000 ca:01 400357                     /home/ec2-user/.gradle/native/25/linux-amd64-ncurses5/libnative-platform-curses.so
+7fdb858d1000-7fdb858d6000 r-xp 00000000 ca:01 400350                     /home/ec2-user/.gradle/native/25/linux-amd64/libnative-platform.so
+7fdb858d6000-7fdb85ad5000 ---p 00005000 ca:01 400350                     /home/ec2-user/.gradle/native/25/linux-amd64/libnative-platform.so
+7fdb85ad5000-7fdb85ad6000 rw-p 00004000 ca:01 400350                     /home/ec2-user/.gradle/native/25/linux-amd64/libnative-platform.so
+7fdb85ad6000-7fdb8c000000 r--p 00000000 ca:01 3465                       /usr/lib/locale/locale-archive
+7fdb8c000000-7fdb8c021000 rw-p 00000000 00:00 0 
+7fdb8c021000-7fdb90000000 ---p 00000000 00:00 0 
+7fdb90000000-7fdb90021000 rw-p 00000000 00:00 0 
+7fdb90021000-7fdb94000000 ---p 00000000 00:00 0 
+7fdb94000000-7fdb94021000 rw-p 00000000 00:00 0 
+7fdb94021000-7fdb98000000 ---p 00000000 00:00 0 
+7fdb980d6000-7fdb980d9000 ---p 00000000 00:00 0 
+7fdb980d9000-7fdb981d7000 rw-p 00000000 00:00 0 
+7fdb981d7000-7fdb981de000 r--s 00000000 ca:01 3464                       /usr/lib64/gconv/gconv-modules.cache
+7fdb981de000-7fdb981e0000 r--s 00006000 ca:01 398207                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-wrapper-4.10.2.jar
+7fdb981e0000-7fdb981ef000 r--s 0004b000 ca:01 398206                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-tooling-api-4.10.2.jar
+7fdb981ef000-7fdb981f1000 r--s 00002000 ca:01 398203                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-stdlib-jdk8-1.2.61.jar
+7fdb981f1000-7fdb981f2000 r--s 00000000 ca:01 398202                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-stdlib-jdk7-1.2.61.jar
+7fdb981f2000-7fdb981f8000 r--s 00015000 ca:01 398201                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-stdlib-common-1.2.61.jar
+7fdb981f8000-7fdb98208000 r--s 000db000 ca:01 398200                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-stdlib-1.2.61.jar
+7fdb98208000-7fdb9820a000 r--s 00009000 ca:01 398199                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-script-runtime-1.2.61.jar
+7fdb9820a000-7fdb9820b000 r--s 00002000 ca:01 398198                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-sam-with-receiver-compiler-plugin-1.2.61.jar
+7fdb9820b000-7fdb98240000 r--s 00241000 ca:01 398197                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-reflect-1.2.61.jar
+7fdb98240000-7fdb9840b000 r--s 019b7000 ca:01 398196                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kotlin-compiler-embeddable-1.2.61.jar
+7fdb9840b000-7fdb9840d000 r--s 00000000 ca:01 398195                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-kotlin-dsl-tooling-models-1.0-rc-6.jar
+7fdb9840d000-7fdb9840f000 r--s 00003000 ca:01 398191                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/annotations-13.0.jar
+7fdb9840f000-7fdb98423000 r--s 00109000 ca:01 398192                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-kotlin-dsl-1.0-rc-6.jar
+7fdb98423000-7fdb98427000 r--s 00013000 ca:01 398212                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-build-cache-4.10.2.jar
+7fdb98427000-7fdb9842d000 r--s 00034000 ca:01 398213                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-persistent-cache-4.10.2.jar
+7fdb9842d000-7fdb98432000 r--s 00015000 ca:01 398216                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-resources-4.10.2.jar
+7fdb98432000-7fdb98433000 r--s 00003000 ca:01 398223                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-build-option-4.10.2.jar
+7fdb98433000-7fdb98434000 r--s 00006000 ca:01 398224                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-cli-4.10.2.jar
+7fdb98434000-7fdb98436000 r--s 00004000 ca:01 398236                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/log4j-over-slf4j-1.7.16.jar
+7fdb98436000-7fdb98438000 r--s 00000000 ca:01 398235                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/jul-to-slf4j-1.7.16.jar
+7fdb98438000-7fdb9843a000 r--s 00003000 ca:01 398234                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/jcl-over-slf4j-1.7.16.jar
+7fdb9843a000-7fdb98442000 r--s 00035000 ca:01 398214                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-logging-4.10.2.jar
+7fdb98442000-7fdb98451000 r--s 00085000 ca:01 398219                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-model-core-4.10.2.jar
+7fdb98451000-7fdb98453000 r--s 00006000 ca:01 398220                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-base-services-groovy-4.10.2.jar
+7fdb98453000-7fdb9845c000 r--s 0002d000 ca:01 398248                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/xml-apis-1.4.01.jar
+7fdb9845c000-7fdb984cd000 r--s 00665000 ca:01 398242                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/groovy-all-2.4.15.jar
+7fdb984cd000-7fdb984e5000 r-xp 00000000 ca:01 394780                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnet.so
+7fdb984e5000-7fdb986e4000 ---p 00018000 ca:01 394780                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnet.so
+7fdb986e4000-7fdb986e5000 r--p 00017000 ca:01 394780                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnet.so
+7fdb986e5000-7fdb986e6000 rw-p 00018000 ca:01 394780                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnet.so
+7fdb986e6000-7fdb986f8000 r-xp 00000000 ca:01 394781                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnio.so
+7fdb986f8000-7fdb988f7000 ---p 00012000 ca:01 394781                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnio.so
+7fdb988f7000-7fdb988f8000 r--p 00011000 ca:01 394781                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnio.so
+7fdb988f8000-7fdb988f9000 rw-p 00012000 ca:01 394781                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libnio.so
+7fdb988f9000-7fdb988fa000 ---p 00000000 00:00 0 
+7fdb988fa000-7fdb989fa000 rw-p 00000000 00:00 0 
+7fdb989fa000-7fdb989fd000 ---p 00000000 00:00 0 
+7fdb989fd000-7fdb98afb000 rw-p 00000000 00:00 0 
+7fdb98afb000-7fdb98aff000 ---p 00000000 00:00 0 
+7fdb98aff000-7fdb98bfc000 rw-p 00000000 00:00 0 
+7fdb98bfc000-7fdb98c00000 ---p 00000000 00:00 0 
+7fdb98c00000-7fdb98cfd000 rw-p 00000000 00:00 0 
+7fdb98cfd000-7fdb98d00000 ---p 00000000 00:00 0 
+7fdb98d00000-7fdb98dfe000 rw-p 00000000 00:00 0 
+7fdb98dfe000-7fdb98e01000 ---p 00000000 00:00 0 
+7fdb98e01000-7fdb98eff000 rw-p 00000000 00:00 0 
+7fdb98eff000-7fdb98f02000 ---p 00000000 00:00 0 
+7fdb98f02000-7fdb99000000 rw-p 00000000 00:00 0 
+7fdb99000000-7fdb99350000 rwxp 00000000 00:00 0 
+7fdb9935f000-7fdb99360000 rw-p 00000000 00:00 0 
+7fdb99360000-7fdba8000000 ---p 00000000 00:00 0 
+7fdba8000000-7fdba87c0000 rw-p 00000000 00:00 0 
+7fdba87c0000-7fdbac000000 ---p 00000000 00:00 0 
+7fdbac000000-7fdbac002000 r--s 00007000 ca:01 398218                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-model-groovy-4.10.2.jar
+7fdbac002000-7fdbac003000 r--s 00006000 ca:01 398225                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-docs-4.10.2.jar
+7fdbac003000-7fdbac004000 r--s 00000000 ca:01 398244                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/javax.inject-1.jar
+7fdbac004000-7fdbac00e000 r--s 00078000 ca:01 398247                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/commons-compress-1.14.jar
+7fdbac00e000-7fdbac01b000 r--s 00083000 ca:01 398245                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/commons-collections-3.2.2.jar
+7fdbac01b000-7fdbac01c000 r--s 00007000 ca:01 398227                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/asm-analysis-6.2.jar
+7fdbac01c000-7fdbac01e000 r--s 0000b000 ca:01 398228                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/asm-tree-6.2.jar
+7fdbac01e000-7fdbac020000 r--s 00012000 ca:01 398226                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/asm-commons-6.2.jar
+7fdbac020000-7fdbac021000 r--s 00004000 ca:01 398251                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-freebsd-amd64-libcpp-0.14.jar
+7fdbac021000-7fdbac022000 r--s 00004000 ca:01 398252                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-freebsd-amd64-libstdcpp-0.14.jar
+7fdbac022000-7fdbac023000 r--s 00004000 ca:01 398253                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-freebsd-i386-libcpp-0.14.jar
+7fdbac023000-7fdbac024000 r--s 00003000 ca:01 398254                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-freebsd-i386-libstdcpp-0.14.jar
+7fdbac024000-7fdbac025000 r--s 00002000 ca:01 398255                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-amd64-0.14.jar
+7fdbac025000-7fdbac026000 r--s 00002000 ca:01 398256                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-i386-0.14.jar
+7fdbac026000-7fdbac028000 r--s 00002000 ca:01 398257                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-osx-amd64-0.14.jar
+7fdbac028000-7fdbac029000 r--s 00003000 ca:01 398258                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-osx-i386-0.14.jar
+7fdbac029000-7fdbac02b000 r--s 0000b000 ca:01 398259                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-windows-amd64-0.14.jar
+7fdbac02b000-7fdbac02c000 r--s 0000b000 ca:01 398260                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-windows-i386-0.14.jar
+7fdbac02c000-7fdbac02d000 r--s 00001000 ca:01 398261                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-amd64-ncurses5-0.14.jar
+7fdbac02d000-7fdbac02e000 r--s 00001000 ca:01 398262                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-amd64-ncurses6-0.14.jar
+7fdbac02e000-7fdbac02f000 r--s 00001000 ca:01 398263                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-i386-ncurses5-0.14.jar
+7fdbac02f000-7fdbac030000 r--s 00001000 ca:01 398264                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-linux-i386-ncurses6-0.14.jar
+7fdbac030000-7fdbac034000 r--s 00012000 ca:01 398246                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/native-platform-0.14.jar
+7fdbac034000-7fdbac037000 r--s 00023000 ca:01 398249                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/jansi-1.14.jar
+7fdbac037000-7fdbac03b000 r--s 0000c000 ca:01 398217                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-native-4.10.2.jar
+7fdbac03b000-7fdbac03d000 r--s 0000f000 ca:01 398230                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/reflectasm-1.07-shaded.jar
+7fdbac03d000-7fdbac03f000 r--s 00000000 ca:01 398265                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/minlog-1.2.jar
+7fdbac03f000-7fdbac041000 r--s 00007000 ca:01 398266                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/objenesis-1.2.jar
+7fdbac041000-7fdbac045000 r--s 00026000 ca:01 398229                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/kryo-2.20.jar
+7fdbac045000-7fdbac04c000 r--s 0002d000 ca:01 398221                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-messaging-4.10.2.jar
+7fdbac04c000-7fdbac04e000 r--s 00006000 ca:01 398215                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-process-services-4.10.2.jar
+7fdbac04e000-7fdbac050000 r--s 00000000 ca:01 398210                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-jvm-services-4.10.2.jar
+7fdbac050000-7fdbac052000 r--s 00006000 ca:01 398239                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/jsr305-2.0.1.jar
+7fdbac052000-7fdbac053000 r--s 00000000 ca:01 398241                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/jcip-annotations-1.0.jar
+7fdbac053000-7fdbac07b000 r--s 001cf000 ca:01 398238                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/guava-jdk5-17.0.jar
+7fdbac07b000-7fdbac07e000 r--s 0001a000 ca:01 398240                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/fastutil-7.2.1-min.jar
+7fdbac07e000-7fdbac082000 r--s 0002a000 ca:01 398232                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/commons-io-2.4.jar
+7fdbac082000-7fdbac0a1000 r--s 001d9000 ca:01 398243                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/ant-1.9.11.jar
+7fdbac0a1000-7fdbac0e7000 r--s 00265000 ca:01 398209                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-core-4.10.2.jar
+7fdbac0e7000-7fdbac0f4000 r--s 00037000 ca:01 398211                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-core-api-4.10.2.jar
+7fdbac0f4000-7fdbac100000 r--s 00064000 ca:01 398222                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-base-services-4.10.2.jar
+7fdbac100000-7fdbac101000 ---p 00000000 00:00 0 
+7fdbac101000-7fdbac24f000 rw-p 00000000 00:00 0 
+7fdbac24f000-7fdbac421000 r--s 0449b000 ca:01 394844                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/rt.jar
+7fdbac421000-7fdbaccf2000 rw-p 00000000 00:00 0 
+7fdbaccf2000-7fdbacd00000 rw-p 00000000 00:00 0 
+7fdbacd00000-7fdbad0b2000 ---p 00000000 00:00 0 
+7fdbad0b2000-7fdbad0ba000 r-xp 00000000 ca:01 394788                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libzip.so
+7fdbad0ba000-7fdbad2b9000 ---p 00008000 ca:01 394788                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libzip.so
+7fdbad2b9000-7fdbad2ba000 r--p 00007000 ca:01 394788                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libzip.so
+7fdbad2ba000-7fdbad2bb000 rw-p 00008000 ca:01 394788                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libzip.so
+7fdbad2bb000-7fdbad2c7000 r-xp 00000000 ca:01 3181                       /lib64/libnss_files-2.17.so
+7fdbad2c7000-7fdbad4c6000 ---p 0000c000 ca:01 3181                       /lib64/libnss_files-2.17.so
+7fdbad4c6000-7fdbad4c7000 r--p 0000b000 ca:01 3181                       /lib64/libnss_files-2.17.so
+7fdbad4c7000-7fdbad4c8000 rw-p 0000c000 ca:01 3181                       /lib64/libnss_files-2.17.so
+7fdbad4c8000-7fdbad4ce000 rw-p 00000000 00:00 0 
+7fdbad4ce000-7fdbad4f8000 r-xp 00000000 ca:01 394770                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libjava.so
+7fdbad4f8000-7fdbad6f7000 ---p 0002a000 ca:01 394770                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libjava.so
+7fdbad6f7000-7fdbad6f8000 r--p 00029000 ca:01 394770                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libjava.so
+7fdbad6f8000-7fdbad6fa000 rw-p 0002a000 ca:01 394770                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libjava.so
+7fdbad6fa000-7fdbad707000 r-xp 00000000 ca:01 394787                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libverify.so
+7fdbad707000-7fdbad906000 ---p 0000d000 ca:01 394787                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libverify.so
+7fdbad906000-7fdbad908000 r--p 0000c000 ca:01 394787                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libverify.so
+7fdbad908000-7fdbad909000 rw-p 0000e000 ca:01 394787                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/libverify.so
+7fdbad909000-7fdbad910000 r-xp 00000000 ca:01 3193                       /lib64/librt-2.17.so
+7fdbad910000-7fdbadb0f000 ---p 00007000 ca:01 3193                       /lib64/librt-2.17.so
+7fdbadb0f000-7fdbadb10000 r--p 00006000 ca:01 3193                       /lib64/librt-2.17.so
+7fdbadb10000-7fdbadb11000 rw-p 00007000 ca:01 3193                       /lib64/librt-2.17.so
+7fdbadb11000-7fdbadb27000 r-xp 00000000 ca:01 3096                       /lib64/libgcc_s-7-20170915.so.1
+7fdbadb27000-7fdbadd26000 ---p 00016000 ca:01 3096                       /lib64/libgcc_s-7-20170915.so.1
+7fdbadd26000-7fdbadd27000 rw-p 00015000 ca:01 3096                       /lib64/libgcc_s-7-20170915.so.1
+7fdbadd27000-7fdbade28000 r-xp 00000000 ca:01 3171                       /lib64/libm-2.17.so
+7fdbade28000-7fdbae027000 ---p 00101000 ca:01 3171                       /lib64/libm-2.17.so
+7fdbae027000-7fdbae028000 r--p 00100000 ca:01 3171                       /lib64/libm-2.17.so
+7fdbae028000-7fdbae029000 rw-p 00101000 ca:01 3171                       /lib64/libm-2.17.so
+7fdbae029000-7fdbae19e000 r-xp 00000000 ca:01 3668                       /usr/lib64/libstdc++.so.6.0.24
+7fdbae19e000-7fdbae39e000 ---p 00175000 ca:01 3668                       /usr/lib64/libstdc++.so.6.0.24
+7fdbae39e000-7fdbae3a8000 r--p 00175000 ca:01 3668                       /usr/lib64/libstdc++.so.6.0.24
+7fdbae3a8000-7fdbae3aa000 rw-p 0017f000 ca:01 3668                       /usr/lib64/libstdc++.so.6.0.24
+7fdbae3aa000-7fdbae3ae000 rw-p 00000000 00:00 0 
+7fdbae3ae000-7fdbaf0aa000 r-xp 00000000 ca:01 394792                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/server/libjvm.so
+7fdbaf0aa000-7fdbaf2a9000 ---p 00cfc000 ca:01 394792                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/server/libjvm.so
+7fdbaf2a9000-7fdbaf355000 r--p 00cfb000 ca:01 394792                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/server/libjvm.so
+7fdbaf355000-7fdbaf37f000 rw-p 00da7000 ca:01 394792                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/amd64/server/libjvm.so
+7fdbaf37f000-7fdbaf3b2000 rw-p 00000000 00:00 0 
+7fdbaf3b2000-7fdbaf575000 r-xp 00000000 ca:01 3163                       /lib64/libc-2.17.so
+7fdbaf575000-7fdbaf775000 ---p 001c3000 ca:01 3163                       /lib64/libc-2.17.so
+7fdbaf775000-7fdbaf779000 r--p 001c3000 ca:01 3163                       /lib64/libc-2.17.so
+7fdbaf779000-7fdbaf77b000 rw-p 001c7000 ca:01 3163                       /lib64/libc-2.17.so
+7fdbaf77b000-7fdbaf780000 rw-p 00000000 00:00 0 
+7fdbaf780000-7fdbaf782000 r-xp 00000000 ca:01 3169                       /lib64/libdl-2.17.so
+7fdbaf782000-7fdbaf982000 ---p 00002000 ca:01 3169                       /lib64/libdl-2.17.so
+7fdbaf982000-7fdbaf983000 r--p 00002000 ca:01 3169                       /lib64/libdl-2.17.so
+7fdbaf983000-7fdbaf984000 rw-p 00003000 ca:01 3169                       /lib64/libdl-2.17.so
+7fdbaf984000-7fdbaf992000 r-xp 00000000 ca:01 394933                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/lib/amd64/jli/libjli.so
+7fdbaf992000-7fdbafb91000 ---p 0000e000 ca:01 394933                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/lib/amd64/jli/libjli.so
+7fdbafb91000-7fdbafb92000 r--p 0000d000 ca:01 394933                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/lib/amd64/jli/libjli.so
+7fdbafb92000-7fdbafb93000 rw-p 0000e000 ca:01 394933                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/lib/amd64/jli/libjli.so
+7fdbafb93000-7fdbafba8000 r-xp 00000000 ca:01 3570                       /lib64/libz.so.1.2.8
+7fdbafba8000-7fdbafda7000 ---p 00015000 ca:01 3570                       /lib64/libz.so.1.2.8
+7fdbafda7000-7fdbafda8000 r--p 00014000 ca:01 3570                       /lib64/libz.so.1.2.8
+7fdbafda8000-7fdbafda9000 rw-p 00015000 ca:01 3570                       /lib64/libz.so.1.2.8
+7fdbafda9000-7fdbafdc0000 r-xp 00000000 ca:01 3189                       /lib64/libpthread-2.17.so
+7fdbafdc0000-7fdbaffbf000 ---p 00017000 ca:01 3189                       /lib64/libpthread-2.17.so
+7fdbaffbf000-7fdbaffc0000 r--p 00016000 ca:01 3189                       /lib64/libpthread-2.17.so
+7fdbaffc0000-7fdbaffc1000 rw-p 00017000 ca:01 3189                       /lib64/libpthread-2.17.so
+7fdbaffc1000-7fdbaffc5000 rw-p 00000000 00:00 0 
+7fdbaffc5000-7fdbaffe7000 r-xp 00000000 ca:01 3156                       /lib64/ld-2.17.so
+7fdbaffe7000-7fdbaffe9000 r--s 0001a000 ca:01 398231                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/asm-6.2.jar
+7fdbaffe9000-7fdbaffee000 r--s 00041000 ca:01 398233                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/commons-lang-2.6.jar
+7fdbaffee000-7fdbafffb000 r--s 00068000 ca:01 398204                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/gradle-launcher-4.10.2.jar
+7fdbafffb000-7fdbb0000000 r--s 000c1000 ca:01 394830                     /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.51.amzn1.x86_64/jre/lib/jsse.jar
+7fdbb0000000-7fdbb008f000 rw-p 00000000 00:00 0 
+7fdbb008f000-7fdbb00d1000 rw-p 00000000 00:00 0 
+7fdbb00d1000-7fdbb00d9000 rw-s 00000000 ca:01 270230                     /tmp/hsperfdata_ec2-user/3685
+7fdbb00d9000-7fdbb00dd000 ---p 00000000 00:00 0 
+7fdbb00dd000-7fdbb01df000 rw-p 00000000 00:00 0 
+7fdbb01df000-7fdbb01e0000 r--s 00009000 ca:01 398237                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/slf4j-api-1.7.16.jar
+7fdbb01e0000-7fdbb01e1000 r--s 00004000 ca:01 398250                     /home/ec2-user/.gradle/wrapper/dists/gradle-4.10.2-all/9fahxiiecdb76a5g3aw9oi8rv/gradle-4.10.2/lib/ant-launcher-1.9.11.jar
+7fdbb01e1000-7fdbb01e3000 r--s 0000d000 ca:01 398088                     /home/ec2-user/app/step1/springboot/gradle/wrapper/gradle-wrapper.jar
+7fdbb01e3000-7fdbb01e4000 rw-p 00000000 00:00 0 
+7fdbb01e4000-7fdbb01e5000 r--p 00000000 00:00 0 
+7fdbb01e5000-7fdbb01e6000 rw-p 00000000 00:00 0 
+7fdbb01e6000-7fdbb01e7000 r--p 00021000 ca:01 3156                       /lib64/ld-2.17.so
+7fdbb01e7000-7fdbb01e8000 rw-p 00022000 ca:01 3156                       /lib64/ld-2.17.so
+7fdbb01e8000-7fdbb01e9000 rw-p 00000000 00:00 0 
+7ffdba054000-7ffdba075000 rw-p 00000000 00:00 0                          [stack]
+7ffdba151000-7ffdba154000 r--p 00000000 00:00 0                          [vvar]
+7ffdba154000-7ffdba156000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Xmx64m -Xms64m -Dorg.gradle.appname=gradlew 
+java_command: org.gradle.wrapper.GradleWrapperMain build
+java_class_path (initial): /home/ec2-user/app/step1/springboot/gradle/wrapper/gradle-wrapper.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/java
+PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/home/ec2-user/.local/bin:/home/ec2-user/bin
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xae0410], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xae0410], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x8be640], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x8be640], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x8be640], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x8be640], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x8be4f0], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x8be700], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x8be700], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x8be700], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x8be700], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Amazon Linux AMI release 2018.03
+
+uname:Linux 4.14.186-110.268.amzn1.x86_64 #1 SMP Tue Jul 14 02:57:34 UTC 2020 x86_64
+libc:glibc 2.17 NPTL 2.17 
+rlimit: STACK 8192k, CORE 0k, NPROC 3858, NOFILE 4096, AS infinity
+load average:1.24 0.30 0.10
+
+/proc/meminfo:
+MemTotal:        1009132 kB
+MemFree:          327816 kB
+MemAvailable:     268724 kB
+Buffers:             424 kB
+Cached:            13000 kB
+SwapCached:            0 kB
+Active:           629160 kB
+Inactive:          12520 kB
+Active(anon):     628368 kB
+Inactive(anon):       52 kB
+Active(file):        792 kB
+Inactive(file):    12468 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               128 kB
+Writeback:             0 kB
+AnonPages:        628360 kB
+Mapped:             9548 kB
+Shmem:                60 kB
+Slab:              22620 kB
+SReclaimable:      11264 kB
+SUnreclaim:        11356 kB
+KernelStack:        2900 kB
+PageTables:         4560 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      504564 kB
+Committed_AS:     825484 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       43008 kB
+DirectMap2M:     1005568 kB
+
+
+CPU:total 1 (initial active 1) (1 cores per cpu, 1 threads per core) family 6 model 63 stepping 2, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, tsc, bmi1, bmi2
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 63
+model name	: Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+stepping	: 2
+microcode	: 0x43
+cpu MHz		: 2400.202
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 1
+core id		: 0
+cpu cores	: 1
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 avx2 smep bmi2 erms invpcid xsaveopt
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4800.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 1009132k(327816k free), swap 0k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.252-b09) for linux-amd64 JRE (1.8.0_252-b09), built on May  1 2020 21:04:57 by "mockbuild" with gcc 4.8.5 20150623 (Red Hat 4.8.5-28)
+
+time: Sat Sep  5 23:46:55 2020
+timezone: KST
+elapsed time: 32 seconds (0d 0h 0m 32s)
+
