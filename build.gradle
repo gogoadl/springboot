@@ -11,13 +11,48 @@ buildscript{
     }
 }
 
+plugins {
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "org.sonarqube" version "3.0"
+    id 'jacoco'
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+}
+sonarqube {
+    properties {
+        property "sonar.projectKey", "S202"
+        property "sonar.projectName", "S202"
+        property "sonar.host.url", "https://sonarqube.ssafy.com"
+        property "sonar.login", "7f9eae60e4fed05078199591cc92c9355e0c8aa3"
+        property "sonar.sources", "src"
+        property "sonar.language", "java"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.profile", "Sonar way"
+        property "sonar.test.inclusions", "**/*Test.java"
+        property 'sonar.coverage.jacoco.xmlReportPaths', "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
 
-group 'com.littlesight.springboot'
+    }
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy 'jacocoTestReport'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+    }
+}
+
+group 'com.hw.mixvoice'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
